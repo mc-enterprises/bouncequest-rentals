@@ -6790,6 +6790,10 @@
             "applied": "설정이 적용되었습니다"
           }
         }
+      },
+      "priceTemplates": {
+        "title": "Shared prices",
+        "description": "Flat and tiered-by-hours prices shared by many items"
       }
     },
     "commandPalette": {

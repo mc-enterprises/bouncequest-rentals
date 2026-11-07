@@ -6790,6 +6790,10 @@
             "applied": "Pengaturan diterapkan"
           }
         }
+      },
+      "priceTemplates": {
+        "title": "Shared prices",
+        "description": "Flat and tiered-by-hours prices shared by many items"
       }
     },
     "commandPalette": {
