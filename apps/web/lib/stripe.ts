@@ -1,6 +1,7 @@
 import Stripe from "stripe";
 import { validateStripePaymentAmount } from "@louez/utils";
 import { stripe, getStripe } from "./stripe/client";
+import { isDirectStripeAccount } from "./stripe/direct";
 
 export { stripe, getStripe };
 
@@ -97,7 +98,10 @@ export async function createAccountLoginLink(accountId: string) {
 }
 
 export async function getAccountStatus(accountId: string) {
-  const account = await stripe.accounts.retrieve(accountId);
+  // BounceQuest direct mode: the store's account is the key's own account.
+  const account = isDirectStripeAccount(accountId)
+    ? await stripe.accounts.retrieve()
+    : await stripe.accounts.retrieve(accountId);
 
   return {
     country: account.country ?? null,
@@ -256,7 +260,7 @@ export async function createCheckoutSession({
       // Save card for future use (deposit authorization hold)
       setup_future_usage: "off_session",
       metadata: { ...paymentReference.metadata, ...feeMetadata },
-      ...(applicationFeeAmount && applicationFeeAmount > 0
+      ...(applicationFeeAmount && applicationFeeAmount > 0 && !isDirectStripeAccount(stripeAccountId)
         ? { application_fee_amount: applicationFeeAmount }
         : {}),
     },
@@ -386,7 +390,7 @@ export async function createPaymentRequestSession({
         ...feeMetadata,
         paymentRequestId,
       },
-      ...(applicationFeeAmount && applicationFeeAmount > 0
+      ...(applicationFeeAmount && applicationFeeAmount > 0 && !isDirectStripeAccount(stripeAccountId)
         ? { application_fee_amount: applicationFeeAmount }
         : {}),
     },

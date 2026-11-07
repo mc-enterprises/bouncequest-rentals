@@ -25,6 +25,7 @@ import {
 import { maybeGrantReferrerReward } from "@/lib/referral/rewards";
 import { fromStripeCents } from "@/lib/stripe";
 import { stripe } from "@/lib/stripe/client";
+import { DIRECT_STRIPE_ACCOUNT_ID } from "@/lib/stripe/direct";
 import { cancelAbandonedCheckout } from "@/lib/reservations/cancel-abandoned-checkout";
 import { completeCheckoutPayment } from "@/lib/reservations/complete-checkout-payment";
 
@@ -170,7 +171,8 @@ export async function POST(request: Request) {
   }
 
   // Get connected account ID from event
-  const connectedAccountId = event.account;
+  // BounceQuest direct mode: events of the key's own account carry no `account`.
+  const connectedAccountId = event.account ?? DIRECT_STRIPE_ACCOUNT_ID;
 
   try {
     switch (event.type) {
