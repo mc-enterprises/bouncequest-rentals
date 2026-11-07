@@ -1059,6 +1059,10 @@ export const products = mysqlTable(
     // for the exact durations defined by pricing tiers (package pricing)
     enforceStrictTiers: boolean("enforce_strict_tiers").notNull().default(false),
 
+    // BounceQuest: shared price template. When set, saving the template rewrites this
+    // product's price, pricing kind/mode, base period and tiers (price-templates.ts).
+    priceTemplateId: varchar("price_template_id", { length: 21 }),
+
     // Stock
     quantity: int("quantity").notNull().default(1),
 
@@ -1124,6 +1128,34 @@ export const productCategories = mysqlTable(
 // ============================================================================
 // Product Pricing Tiers (Tiered/Progressive Pricing)
 // ============================================================================
+
+// BounceQuest: one price shared by many products (InflatableOffice "shared prices").
+// Flat: pricingKind=fixed, price per event. Tiered by hours: pricingKind=duration,
+// pricingMode=hour, a base period and tiers of { period (minutes), price }.
+export interface PriceTemplateTier {
+  period: number;
+  price: number;
+}
+
+export const priceTemplates = mysqlTable(
+  "price_templates",
+  {
+    id: id(),
+    storeId: varchar("store_id", { length: 21 }).notNull(),
+    name: varchar("name", { length: 255 }).notNull(),
+    pricingKind: pricingKindEnum.notNull().default("fixed"),
+    pricingMode: pricingModeEnum.notNull().default("hour"),
+    price: decimal("price", { precision: 10, scale: 2 }).notNull(),
+    basePeriodMinutes: int("base_period_minutes"),
+    enforceStrictTiers: boolean("enforce_strict_tiers").notNull().default(true),
+    tiers: json("tiers").$type<PriceTemplateTier[]>(),
+    createdAt: timestamp("created_at", { mode: "date" }).defaultNow().notNull(),
+    updatedAt: timestamp("updated_at", { mode: "date" }).defaultNow().notNull(),
+  },
+  (table) => ({
+    storeIdx: index("price_templates_store_idx").on(table.storeId),
+  }),
+);
 
 export const productPricingTiers = mysqlTable(
   "product_pricing_tiers",
