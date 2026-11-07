@@ -156,6 +156,8 @@ export const createReservationInputSchema = z.object({
   customer: createReservationCustomerSchema,
   items: z.array(createReservationLineSchema).min(1).max(50),
   customerNotes: optionalReservationText(2000),
+  // BounceQuest: the full name the customer typed to sign the rental agreement.
+  signatureName: optionalReservationText(255),
   /** Client estimates, only used for mismatch monitoring. */
   subtotalAmount: z.number().min(0),
   depositAmount: z.number().min(0),

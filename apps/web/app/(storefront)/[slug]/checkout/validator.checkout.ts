@@ -48,6 +48,7 @@ export const CHECKOUT_DEFAULT_VALUES: CheckoutFormValues = {
   // EU Consumer Rights Directive art. 22). Required mode is forced server-side.
   tulipInsuranceOptIn: false,
   acceptCgv: false,
+  signatureName: "",
   profileFields: EMPTY_CUSTOMER_PROFILE_FORM_VALUES,
   customerFields: {},
   itemDetails: {},
@@ -94,6 +95,7 @@ export const createCheckoutValidator = (
       notes: z.string(),
       tulipInsuranceOptIn: z.boolean(),
       acceptCgv: z.boolean(),
+      signatureName: z.string().max(255),
       profileFields: z.object({
         birthDate: z.string(),
         acquisitionSource: z.object({ source: z.string(), detail: z.string() }),
@@ -142,6 +144,16 @@ export const createCheckoutValidator = (
 
       if (!data.acceptCgv) {
         ctx.addIssue({ code: "custom", message: t("errors.acceptCgv"), path: ["acceptCgv"] });
+      }
+
+      // BounceQuest e-sign: the typed name must be a full name (two words or more).
+      const typedName = data.signatureName.trim().replace(/\s+/g, " ");
+      if (typedName.length < 3 || !typedName.includes(" ")) {
+        ctx.addIssue({
+          code: "custom",
+          message: "Type your full first and last name to sign the rental agreement",
+          path: ["signatureName"],
+        });
       }
 
       if (options.requireAddress) {

@@ -139,6 +139,7 @@ export const buildReservationPayload = ({
     };
   }),
   customerNotes: values.notes || undefined,
+  signatureName: values.signatureName?.trim().replace(/\s+/g, " ") || undefined,
   tulipInsuranceOptIn:
     tulipInsuranceMode === "required"
       ? true

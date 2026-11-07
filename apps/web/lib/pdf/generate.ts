@@ -63,7 +63,7 @@ export async function generateContract({
 
   const locale =
     requestedLocale ??
-    (reservation.locale && isLocale(reservation.locale) ? reservation.locale : "fr");
+    (reservation.locale && isLocale(reservation.locale) ? reservation.locale : "en");
 
   const automaticallyValidatedAt = !reservation.contractValidatedAt
     ? await db.transaction((tx) =>
@@ -223,6 +223,7 @@ export async function generateContract({
         contractValidatedAt: reservation.contractValidatedAt,
         signatureMethod: reservation.signatureMethod,
         signatureIp: reservation.signatureIp,
+        signatureName: reservation.signatureName,
         drawnSignature,
         createdAt: reservation.createdAt,
         customer: {

@@ -266,6 +266,39 @@ export const CheckoutConfirmStep = withForm({
               );
             }}
           </form.Field>
+
+          <form.Field name="signatureName">
+            {(field) => {
+              const showError = submissionAttempts > 0 && field.state.meta.errors.length > 0;
+              return (
+                <div className="flex flex-col gap-1.5 rounded-lg border p-3">
+                  <Label htmlFor={field.name} className="text-sm font-medium">
+                    Electronic signature
+                  </Label>
+                  <p className="text-xs text-muted-foreground">
+                    Type your full legal name to sign the rental agreement and safety waiver. Your
+                    name, the date and time, and your IP address are recorded with the signed copy.
+                  </p>
+                  <input
+                    id={field.name}
+                    data-testid="checkout-signature-name"
+                    autoComplete="name"
+                    className="h-11 w-full rounded-lg border border-input bg-background px-3 font-serif text-lg italic outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                    placeholder="First Last"
+                    value={field.state.value}
+                    onChange={(event) => field.handleChange(event.target.value)}
+                    onBlur={field.handleBlur}
+                    aria-invalid={showError}
+                  />
+                  {showError && (
+                    <p className="text-xs text-destructive">
+                      {getFieldError(field.state.meta.errors[0])}
+                    </p>
+                  )}
+                </div>
+              );
+            }}
+          </form.Field>
         </StepContent>
 
         <CheckoutStepActions>

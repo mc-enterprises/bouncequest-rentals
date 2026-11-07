@@ -109,6 +109,8 @@ export interface CheckoutFormValues {
   notes: string;
   tulipInsuranceOptIn: boolean;
   acceptCgv: boolean;
+  /** BounceQuest: full name typed as the electronic signature of the rental agreement. */
+  signatureName: string;
   /** Native profile fields the store asks (birth date, source, links). */
   profileFields: CustomerProfileFormValues;
   /** Customer-scope custom fields the store asks, by definition id. */
