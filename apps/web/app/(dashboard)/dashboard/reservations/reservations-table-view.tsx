@@ -59,6 +59,7 @@ import {
   getReservationDetailHref,
   isReservationAnalyticsSource,
 } from "@/lib/product-analytics/reservation-analytics";
+import { deriveClientEventStatus, EventStatusBadge } from "./[id]/event-status-card";
 
 const STATUS_ICON_MAP: Record<ReservationStatus, typeof PendingSolidIcon> = {
   pending: PendingSolidIcon,
@@ -318,10 +319,19 @@ export function ReservationsTableView({
 
                     {/* Status */}
                     <TableCell>
-                      <Badge variant={statusConfig.badgeVariant} className="gap-1">
-                        <StatusIcon className="h-3 w-3" />
-                        {t(`status.${status}`)}
-                      </Badge>
+                      <span className="flex flex-col items-start gap-1">
+                        <EventStatusBadge
+                          value={deriveClientEventStatus(
+                            status,
+                            reservation.eventStatus,
+                            reservation.signedAt,
+                          )}
+                        />
+                        <Badge variant={statusConfig.badgeVariant} className="gap-1">
+                          <StatusIcon className="h-3 w-3" />
+                          {t(`status.${status}`)}
+                        </Badge>
+                      </span>
                     </TableCell>
 
                     {/* Payment (hidden on small screens) */}

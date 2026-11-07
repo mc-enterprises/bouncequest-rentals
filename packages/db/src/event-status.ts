@@ -215,7 +215,8 @@ export function queueStatusWebhook(input: {
   reservationId: string;
   previousStatus: LouezStatus | null;
   previousEventStatus: EventStatus | null;
-  expectedStatus: LouezStatus;
+  /** When set, nothing is sent unless the committed row has this status. */
+  expectedStatus?: LouezStatus;
   actor?: string | null;
   event?: StatusWebhookPayload["event"];
 }): void {
@@ -224,7 +225,8 @@ export function queueStatusWebhook(input: {
     void (async () => {
       try {
         const row = snapshotLoader ? await snapshotLoader(input.reservationId) : null;
-        if (!row || row.status !== input.expectedStatus) return;
+        if (!row) return;
+        if (input.expectedStatus && row.status !== input.expectedStatus) return;
         const eventStatus = deriveEventStatus(row);
         await postStatusWebhook({
           event: input.event ?? "reservation.status_changed",
