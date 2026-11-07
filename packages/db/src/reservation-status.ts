@@ -142,6 +142,8 @@ export type ReservationStatusChangePlan =
 
 // No transition enters pending or quote, so they have no default.
 const DEFAULT_ACTIVITY_TYPE: Partial<Record<ReservationStatus, ReservationActivityType>> = {
+  // BounceQuest: a Quote put on Hold.
+  pending: "modified",
   confirmed: "confirmed",
   ongoing: "picked_up",
   completed: "returned",
