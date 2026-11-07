@@ -89,6 +89,7 @@ export async function createAccountLoginLink(accountId: string) {
   // Standard accounts use the full Stripe Dashboard and sign in directly, so there is no
   // platform-generated login link — they go to the hosted dashboard. Only Express accounts
   // support a one-click login link, so we retrieve the account and special-case that type.
+  if (isDirectStripeAccount(accountId)) return "https://dashboard.stripe.com";
   const account = await stripe.accounts.retrieve(accountId);
   if (account.type === "express") {
     const loginLink = await stripe.accounts.createLoginLink(accountId);
