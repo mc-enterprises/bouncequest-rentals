@@ -6,6 +6,7 @@ import { emailLogs } from '@louez/db'
 import { getEmailTranslations, type EmailLocale } from './i18n'
 import { getLogoForLightBackground } from '@louez/utils'
 import { resolveEmailLogo } from './logo'
+import { getBounceQuestConfirmationExtras } from './bouncequest-confirmation'
 import {
   composeInstantAccessEmail,
   composeReminderPickupEmail,
@@ -135,7 +136,7 @@ export async function sendVerificationCodeEmail({
   to,
   store,
   code,
-  locale = 'fr',
+  locale = 'en',
 }: {
   to: string
   store: Store
@@ -191,7 +192,7 @@ export async function sendReservationConfirmationEmail({
   reservationUrl,
   documentAttachments = [],
   contractSignatureUrl,
-  locale = 'fr',
+  locale = 'en',
 }: {
   to: string
   store: Store
@@ -225,8 +226,16 @@ export async function sendReservationConfirmationEmail({
     : `${t.confirmReservation.subject.replace('{number}', reservation.number)} - ${store.name}`
 
   const logo = await resolveEmailLogo(getLogoForLightBackground(store))
+  const extras = await getBounceQuestConfirmationExtras({
+    reservationId: reservation.id,
+    reservationNumber: reservation.number,
+    totalAmount: reservation.totalAmount,
+    existingAttachments: documentAttachments,
+  })
   const html = await render(
     ReservationConfirmationEmail({
+      amountPaid: extras.amountPaid,
+      balanceDue: extras.balanceDue,
       storeName: store.name,
       logoUrl: logo.url,
       primaryColor: store.theme?.primaryColor || '#0066FF',
@@ -262,7 +271,7 @@ export async function sendReservationConfirmationEmail({
       to,
       subject,
       html,
-      attachments: [...logo.attachments, ...documentAttachments],
+      attachments: [...logo.attachments, ...documentAttachments, ...extras.attachments],
       fromName: store.name,
     })
     await logEmail({
@@ -297,7 +306,7 @@ export async function sendReservationModifiedEmail({
   reservation,
   reservationUrl,
   previousPeriod,
-  locale = 'fr',
+  locale = 'en',
 }: {
   to: string
   store: Store
@@ -376,7 +385,7 @@ export async function sendRequestReceivedEmail({
   store,
   customer,
   reservation,
-  locale = 'fr',
+  locale = 'en',
 }: {
   to: string
   store: Store
@@ -452,7 +461,7 @@ export async function sendRequestAcceptedEmail({
   contractUrl,
   termsUrl,
   paymentUrl,
-  locale = 'fr',
+  locale = 'en',
 }: {
   to: string
   store: Store
@@ -541,7 +550,7 @@ export async function sendRequestRejectedEmail({
   customer,
   reservation,
   reason,
-  locale = 'fr',
+  locale = 'en',
 }: {
   to: string
   store: Store
@@ -635,7 +644,7 @@ export async function renderReminderPickupEmail({
   reservationUrl,
   contractSignatureUrl,
   additionalMessage,
-  locale = 'fr',
+  locale = 'en',
 }: ReminderPickupEmailParams): Promise<RenderedEmail> {
   const logo = await resolveEmailLogo(getLogoForLightBackground(store))
   const { subject, element } = composeReminderPickupEmail({
@@ -661,7 +670,7 @@ export async function sendReminderPickupEmail({
   reservationUrl,
   contractSignatureUrl,
   additionalMessage,
-  locale = 'fr',
+  locale = 'en',
 }: ReminderPickupEmailParams & { to: string }) {
   const { subject, html, attachments } = await renderReminderPickupEmail({
     store,
@@ -716,7 +725,7 @@ export async function renderReminderReturnEmail({
   customer,
   reservation,
   additionalMessage,
-  locale = 'fr',
+  locale = 'en',
 }: ReminderReturnEmailParams): Promise<RenderedEmail> {
   const logo = await resolveEmailLogo(getLogoForLightBackground(store))
   const { subject, element } = composeReminderReturnEmail({
@@ -738,7 +747,7 @@ export async function sendReminderReturnEmail({
   customer,
   reservation,
   additionalMessage,
-  locale = 'fr',
+  locale = 'en',
 }: ReminderReturnEmailParams & { to: string }) {
   const { subject, html, attachments } = await renderReminderReturnEmail({
     store,
@@ -781,7 +790,7 @@ export async function sendReminderPickupAdminEmail({
   customer,
   reservation,
   dashboardUrl,
-  locale = 'fr',
+  locale = 'en',
 }: {
   to: string
   store: Store
@@ -854,7 +863,7 @@ export async function sendReminderReturnAdminEmail({
   customer,
   reservation,
   dashboardUrl,
-  locale = 'fr',
+  locale = 'en',
 }: {
   to: string
   store: Store
@@ -928,7 +937,7 @@ export async function sendReminderDigestAdminEmail({
   pickups,
   returns,
   dashboardUrl,
-  locale = 'fr',
+  locale = 'en',
 }: {
   to: string
   store: Store
@@ -988,7 +997,7 @@ export async function sendNewRequestLandlordEmail({
   customer,
   reservation,
   dashboardUrl,
-  locale = 'fr',
+  locale = 'en',
 }: {
   to: string
   store: StoreWithEmailDateSettings
@@ -1063,7 +1072,7 @@ export async function sendPhoneCallbackLandlordEmail({
   callerPhone,
   message,
   conversationUrl,
-  locale = 'fr',
+  locale = 'en',
 }: {
   to: string
   storeId: string
@@ -1121,7 +1130,7 @@ export async function sendContactMessageEmail({
   senderEmail,
   senderPhone,
   message,
-  locale = 'fr',
+  locale = 'en',
 }: {
   to: string
   storeId: string
@@ -1189,7 +1198,7 @@ export async function sendVoiceNumberBillingEmail({
   e164,
   credits,
   deadline,
-  locale = 'fr',
+  locale = 'en',
 }: {
   variant: 'warning' | 'failed' | 'released'
   to: string
@@ -1253,7 +1262,7 @@ export async function sendBalanceLimitEmail({
   balance,
   limit,
   ctaUrl,
-  locale = 'fr',
+  locale = 'en',
 }: {
   variant: 'near' | 'reached'
   to: string
@@ -1310,7 +1319,7 @@ export async function sendTeamInvitationEmail({
   storeLogoUrl,
   inviterName,
   invitationUrl,
-  locale = 'fr',
+  locale = 'en',
 }: {
   to: string
   storeName: string
@@ -1352,7 +1361,7 @@ export async function sendRewardUnlockedEmail({
   freeReservations,
   rewardValue,
   ctaUrl,
-  locale = 'fr',
+  locale = 'en',
 }: {
   to: string
   storeName: string
@@ -1421,7 +1430,7 @@ export async function renderInstantAccessEmail({
   accessUrl,
   showPaymentCta,
   additionalMessage,
-  locale = 'fr',
+  locale = 'en',
 }: InstantAccessEmailParams): Promise<RenderedEmail> {
   const logo = await resolveEmailLogo(getLogoForLightBackground(store))
   const { subject, element } = composeInstantAccessEmail({
@@ -1453,7 +1462,7 @@ export async function sendInstantAccessEmail({
   accessUrl,
   showPaymentCta,
   additionalMessage,
-  locale = 'fr',
+  locale = 'en',
 }: InstantAccessEmailParams & { to: string }) {
   const { subject, html, attachments } = await renderInstantAccessEmail({
     store,
@@ -1499,7 +1508,7 @@ export async function sendThankYouReviewEmail({
   customer,
   reservation,
   reviewUrl,
-  locale = 'fr',
+  locale = 'en',
 }: {
   to: string
   store: {
@@ -1583,7 +1592,7 @@ export async function sendReservationCancelledEmail({
   reservation,
   reason,
   storefrontUrl,
-  locale = 'fr',
+  locale = 'en',
 }: {
   to: string
   store: Store
@@ -1657,7 +1666,7 @@ export async function sendReservationCompletedEmail({
   depositAmount,
   depositReturned,
   storefrontUrl,
-  locale = 'fr',
+  locale = 'en',
 }: {
   to: string
   store: Store
@@ -1737,7 +1746,7 @@ export async function sendPaymentConfirmationEmail({
   reservationUrl,
   documentAttachments = [],
   contractSignatureUrl,
-  locale = 'fr',
+  locale = 'en',
 }: {
   to: string
   store: Store
@@ -1821,7 +1830,7 @@ export async function sendPaymentFailedEmail({
   paymentAmount,
   errorMessage,
   paymentUrl,
-  locale = 'fr',
+  locale = 'en',
 }: {
   to: string
   store: Store
@@ -1893,7 +1902,7 @@ export async function sendPaymentRequestEmail({
   description,
   paymentUrl,
   customMessage,
-  locale = 'fr',
+  locale = 'en',
 }: {
   to: string
   store: Store
@@ -1966,7 +1975,7 @@ export async function sendDepositAuthorizationRequestEmail({
   depositAmount,
   authorizationUrl,
   customMessage,
-  locale = 'fr',
+  locale = 'en',
 }: {
   to: string
   store: Store
@@ -2036,7 +2045,7 @@ export async function sendQuoteSentEmail({
   reservation,
   items,
   reservationUrl,
-  locale = 'fr',
+  locale = 'en',
 }: {
   to: string
   store: Store
@@ -2110,7 +2119,7 @@ export async function sendSupplierInvoiceReceivedEmail({
   store,
   invoice,
   dashboardUrl,
-  locale = 'fr',
+  locale = 'en',
 }: {
   to: string
   store: Store
