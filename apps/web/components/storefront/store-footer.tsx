@@ -92,14 +92,14 @@ export const StoreFooter = ({
           </>
         ) : null}
         <p>
-          {t("poweredBy")}{" "}
+          BounceQuest Rentals ·{" "}
           <a
-            href="https://louez.io"
+            href="https://github.com/mc-enterprises/bouncequest-rentals"
             target="_blank"
             rel="noopener noreferrer"
             className="font-medium text-foreground hover:underline"
           >
-            Louez.io
+            Source (AGPL, built on Louez)
           </a>
         </p>
       </div>

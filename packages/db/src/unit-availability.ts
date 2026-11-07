@@ -26,7 +26,14 @@ import {
   reservations,
 } from "./schema";
 
-export const BLOCKING_RESERVATION_STATUSES = ["pending", "confirmed", "ongoing"] as const;
+// BounceQuest: Hold/Contracted (pending), Confirmed (confirmed/ongoing) and Complete
+// (completed) all reserve inventory across the delivery-to-return window.
+export const BLOCKING_RESERVATION_STATUSES = [
+  "pending",
+  "confirmed",
+  "ongoing",
+  "completed",
+] as const;
 
 export type BlockingReservationStatus = (typeof BLOCKING_RESERVATION_STATUSES)[number];
 
@@ -39,7 +46,9 @@ function applyTurnoverBuffer(date: Date, minutes: number, direction: -1 | 1) {
 export function getBlockingReservationStatuses(
   pendingBlocksAvailability: boolean,
 ): BlockingReservationStatus[] {
-  return pendingBlocksAvailability ? [...BLOCKING_RESERVATION_STATUSES] : ["confirmed", "ongoing"];
+  return pendingBlocksAvailability
+    ? [...BLOCKING_RESERVATION_STATUSES]
+    : ["confirmed", "ongoing", "completed"];
 }
 
 /** Effective stock end includes a live customer extension checkout. */

@@ -23,8 +23,8 @@ export async function GET() {
   });
 
   const manifest = {
-    name: 'Louez',
-    short_name: 'Louez',
+    name: 'BounceQuest Rentals',
+    short_name: 'BounceQuest',
     description: t('subtitle'),
     id: '/',
     start_url: '/',

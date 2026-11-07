@@ -1,7 +1,7 @@
 import { supportedLocales, isSupportedLocale } from "@louez/types";
 
 export const locales = supportedLocales;
-export const defaultLocale = "fr" as const;
+export const defaultLocale = "en" as const;
 
 export type Locale = (typeof locales)[number];
 

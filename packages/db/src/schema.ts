@@ -1441,6 +1441,19 @@ export const verificationCodes = mysqlTable("verification_codes", {
   createdAt: timestamp("created_at", { mode: "date" }).defaultNow().notNull(),
 });
 
+// InflatableOffice-style event statuses shown to BounceQuest staff. Hold, Contracted,
+// Confirmed and Complete reserve inventory; Cancelled, Partial and Quote do not.
+export const EVENT_STATUSES = [
+  "cancelled",
+  "partial",
+  "quote",
+  "hold",
+  "contracted",
+  "confirmed",
+  "complete",
+] as const;
+export type EventStatus = (typeof EVENT_STATUSES)[number];
+
 export const reservationStatus = mysqlEnum("reservation_status", [
   "pending",
   "confirmed",
@@ -1486,6 +1499,10 @@ export const reservations = mysqlTable(
 
     // Status
     status: reservationStatus.default("pending").notNull(),
+    // BounceQuest event status (InflatableOffice vocabulary). Null means "derive from
+    // status"; see event-status.ts, which narrows quote -> partial|quote and
+    // pending -> hold|contracted.
+    eventStatus: varchar("event_status", { length: 20 }).$type<EventStatus>(),
 
     // Dates
     startDate: timestamp("start_date", { mode: "date" }).notNull(),
@@ -1512,6 +1529,8 @@ export const reservations = mysqlTable(
     signedAt: timestamp("signed_at", { mode: "date" }),
     signatureIp: varchar("signature_ip", { length: 50 }),
     signatureMethod: varchar("signature_method", { length: 20 }).$type<ContractSignatureMethod>(),
+    // The full legal name the customer typed as their electronic signature.
+    signatureName: varchar("signature_name", { length: 255 }),
     // When the contract became final, on confirmation or payment. Not a customer signature.
     contractValidatedAt: timestamp("contract_validated_at", { mode: "date" }),
 
