@@ -6790,6 +6790,10 @@
             "applied": "설정이 적용되었습니다"
           }
         }
+      },
+      "priceTemplates": {
+        "title": "Shared prices",
+        "description": "Flat and tiered-by-hours prices shared by many items"
       }
     },
     "commandPalette": {
@@ -9241,6 +9245,7 @@
     "returnAddressRequired": "올바른 반품 주소를 입력하세요.",
     "returnAddressTooFar": "반송 주소가 너무 멀습니다(최대 {maxKm}km).",
     "advanceNoticeViolation": "최소 {duration} 사전 예약 필수",
+    "maxAdvanceViolation": "Bookings open up to {days} days ahead. Please pick an earlier date.",
     "noReservationsWithEmail": "이 이메일에는 예약이 없습니다.",
     "noReservationForEmail": "이 이메일에는 예약이 없습니다.",
     "sendCodeError": "코드 전송 중 오류 발생",

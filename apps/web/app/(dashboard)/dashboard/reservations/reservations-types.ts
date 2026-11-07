@@ -33,6 +33,8 @@ export interface Reservation {
   number: string
   source?: string | null
   status: ReservationStatus | null
+  /** BounceQuest event status (InflatableOffice vocabulary). */
+  eventStatus?: string | null
   startDate: Date
   endDate: Date
   subtotalAmount: string

@@ -64,6 +64,17 @@ export const validateRentalWindow = ({
     });
   }
 
+  const maxAdvanceDays = settings?.maxAdvanceDays ?? null;
+  if (maxAdvanceDays && maxAdvanceDays > 0) {
+    const latestStart = new Date(now.getTime() + maxAdvanceDays * 24 * 60 * 60 * 1000);
+    if (window.start > latestStart) {
+      return failReservation("errors.maxAdvanceViolation", {
+        days: maxAdvanceDays,
+        latestStartTime: latestStart.toISOString(),
+      });
+    }
+  }
+
   return { ok: true };
 };
 

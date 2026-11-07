@@ -31,7 +31,8 @@ const reservationStatusTransitions: Partial<
   Record<ReservationStatus, readonly ReservationStatus[]>
 > = {
   pending: ['confirmed', 'rejected', 'cancelled'],
-  quote: ['confirmed', 'declined', 'cancelled'],
+  // BounceQuest: a Partial/Quote can be put on Hold (pending) before it is paid.
+  quote: ['pending', 'confirmed', 'declined', 'cancelled'],
   confirmed: ['ongoing', 'cancelled'],
   ongoing: ['completed', 'cancelled'],
 }

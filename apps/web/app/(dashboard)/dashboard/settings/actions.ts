@@ -31,6 +31,7 @@ const extensionRulesSchema = z.object({
   automaticExtensions: z.boolean(),
   maxExtensionDays: z.number().int().min(1).max(365).nullable(),
   contractSignatureMode: z.enum(CONTRACT_SIGNATURE_MODES),
+  maxAdvanceDays: z.number().int().min(1).max(1095).nullable().optional(),
 });
 
 /** Country, currency and billing address (the "Entreprise" settings page). */

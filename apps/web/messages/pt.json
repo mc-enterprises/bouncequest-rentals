@@ -6790,6 +6790,10 @@
             "applied": "Definições aplicadas"
           }
         }
+      },
+      "priceTemplates": {
+        "title": "Shared prices",
+        "description": "Flat and tiered-by-hours prices shared by many items"
       }
     },
     "commandPalette": {
@@ -9241,6 +9245,7 @@
     "returnAddressRequired": "Por favor, insira um endereço de devolução válido",
     "returnAddressTooFar": "O endereço de devolução é demasiado longe ({maxKm} km máximo)",
     "advanceNoticeViolation": "As reservas devem ser feitas com pelo menos {duration} de antecedência",
+    "maxAdvanceViolation": "Bookings open up to {days} days ahead. Please pick an earlier date.",
     "noReservationsWithEmail": "Nenhuma reserva encontrada com este email",
     "noReservationForEmail": "Nenhuma reserva encontrada com este email",
     "sendCodeError": "Erro ao enviar codigo",

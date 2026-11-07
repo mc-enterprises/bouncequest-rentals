@@ -44,6 +44,10 @@ interface ReservationConfirmationEmailProps {
   subtotal: number;
   deposit: number;
   total: number;
+  /** BounceQuest: rental amount paid so far (the online deposit). */
+  amountPaid?: number;
+  /** BounceQuest: what remains to pay on the event day. */
+  balanceDue?: number;
   reservationUrl: string;
   contractSignatureUrl?: string;
   customContent?: EmailCustomContent;
@@ -75,6 +79,8 @@ export function ReservationConfirmationEmail({
   subtotal,
   deposit,
   total,
+  amountPaid,
+  balanceDue,
   reservationUrl,
   contractSignatureUrl,
   customContent,
@@ -132,6 +138,12 @@ export function ReservationConfirmationEmail({
       : [{ label: tc.subtotal, amount: subtotal }]),
     ...(deposit > 0 ? [{ label: tc.deposit, amount: deposit }] : []),
     { label: tc.totalToPay, amount: total, bold: true },
+    ...(amountPaid !== undefined && amountPaid > 0
+      ? [{ label: "Paid today", amount: amountPaid }]
+      : []),
+    ...(balanceDue !== undefined
+      ? [{ label: "Balance due on event day", amount: balanceDue, bold: true }]
+      : []),
   ];
 
   return (

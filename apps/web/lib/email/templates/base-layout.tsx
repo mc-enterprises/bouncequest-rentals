@@ -91,9 +91,9 @@ export function BaseLayout({
               {baseLayout.sentBy.replace("{storeName}", storeName)}. {baseLayout.ignoreIfNotYou}
             </Text>
             <Text style={shell.footerText}>
-              {baseLayout.poweredBy}{" "}
-              <Link href="https://louez.io" style={shell.footerLink}>
-                Louez.io
+              BounceQuest Rentals ·{" "}
+              <Link href="https://github.com/mc-enterprises/bouncequest-rentals" style={shell.footerLink}>
+                Source (AGPL, built on Louez)
               </Link>
             </Text>
           </Container>

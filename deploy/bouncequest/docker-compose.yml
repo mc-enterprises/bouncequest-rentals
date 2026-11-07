@@ -1,0 +1,185 @@
+# BounceQuest Rentals — production stack (Hetzner VPS, /opt/bouncequest-rentals).
+#
+#   docker compose --env-file .env up -d
+#
+# Caddy binds the VPS public IPv4 only (BQ_PUBLIC_IP), so it never collides with the
+# n8n Caddy that listens on 127.0.0.1 and the Tailscale address. TLS is automatic
+# (Let's Encrypt) once the DNS A record for BQ_DOMAIN points at BQ_PUBLIC_IP.
+
+name: bouncequest
+
+services:
+  app:
+    image: ${BQ_IMAGE:-ghcr.io/mc-enterprises/bouncequest-rentals:latest}
+    environment:
+      LOUEZ_MODE: standalone
+      LOUEZ_BILLING: "off"
+      NODE_ENV: production
+      DATABASE_URL: mysql://louez:${DB_PASSWORD}@db:3306/louez
+      NEXT_PUBLIC_APP_URL: https://${BQ_DOMAIN}
+      NEXT_PUBLIC_APP_DOMAIN: ${BQ_DOMAIN}
+      NEXT_PUBLIC_DASHBOARD_SUBDOMAIN: app
+      NEXT_PUBLIC_FORMAT_LOCALE: en-US
+      AUTH_URL: https://${BQ_DOMAIN}
+      AUTH_TRUST_HOST: "true"
+      AUTH_SECRET: ${AUTH_SECRET}
+      S3_ENDPOINT: http://minio:9000
+      S3_REGION: us-east-1
+      S3_BUCKET: louez
+      S3_ACCESS_KEY_ID: ${MINIO_ROOT_USER}
+      S3_SECRET_ACCESS_KEY: ${MINIO_ROOT_PASSWORD}
+      S3_PUBLIC_URL: /files
+      SMTP_HOST: ${SMTP_HOST:-}
+      SMTP_PORT: ${SMTP_PORT:-587}
+      SMTP_SECURE: ${SMTP_SECURE:-false}
+      SMTP_USER: ${SMTP_USER:-}
+      SMTP_PASSWORD: ${SMTP_PASSWORD:-}
+      SMTP_FROM: ${SMTP_FROM:-}
+      STRIPE_SECRET_KEY: ${STRIPE_SECRET_KEY:-}
+      STRIPE_CONNECT_WEBHOOK_SECRET: ${STRIPE_WEBHOOK_SECRET:-}
+      NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY: ${STRIPE_PUBLISHABLE_KEY:-}
+      GOOGLE_PLACES_API_KEY: ${GOOGLE_PLACES_API_KEY:-}
+      CRON_SECRET: ${CRON_SECRET}
+      BQ_STATUS_WEBHOOK_URL: ${BQ_STATUS_WEBHOOK_URL:-}
+      BQ_STATUS_WEBHOOK_SECRET: ${BQ_STATUS_WEBHOOK_SECRET:-}
+    volumes:
+      - app_data:/app/data
+    depends_on:
+      db:
+        condition: service_healthy
+      minio:
+        condition: service_healthy
+    restart: unless-stopped
+    mem_limit: 1536m
+
+  db:
+    image: mysql:8.4
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+      MYSQL_DATABASE: louez
+      MYSQL_USER: louez
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+    command: ["--innodb-buffer-pool-size=256M", "--performance-schema=OFF"]
+    volumes:
+      - mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+    restart: unless-stopped
+    mem_limit: 768m
+
+  minio:
+    image: cgr.dev/chainguard/minio:latest
+    user: "0:0"
+    entrypoint: ["/bin/sh", "-c"]
+    command: ["mkdir -p /data/louez && exec minio server /data"]
+    environment:
+      MINIO_ROOT_USER: ${MINIO_ROOT_USER}
+      MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD}
+    volumes:
+      - minio_data:/data
+    healthcheck:
+      test:
+        - CMD
+        - bash
+        - -c
+        - >-
+          exec 3<>/dev/tcp/127.0.0.1/9000 &&
+          printf 'GET /minio/health/live HTTP/1.1\r\nHost: localhost\r\nConnection: close\r\n\r\n' >&3 &&
+          read -r status <&3 && [[ $$status == *' 200 '* ]]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+    restart: unless-stopped
+    mem_limit: 384m
+
+  caddy:
+    image: caddy:2.10
+    environment:
+      BQ_DOMAIN: ${BQ_DOMAIN}
+      ACME_EMAIL: ${ACME_EMAIL:-}
+    ports:
+      - "${BQ_PUBLIC_IP}:80:80"
+      - "${BQ_PUBLIC_IP}:443:443"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    depends_on:
+      - app
+    restart: unless-stopped
+    mem_limit: 128m
+
+  # Configures the store once the first admin account exists (Q registers at /register),
+  # then exits. Re-runs keep dashboard edits.
+  seed:
+    image: node:22-alpine
+    working_dir: /seed
+    environment:
+      DATABASE_URL: mysql://louez:${DB_PASSWORD}@db:3306/louez
+      STRIPE_SECRET_KEY: ${STRIPE_SECRET_KEY:-}
+      BQ_DEPOSIT_PERCENT: ${BQ_DEPOSIT_PERCENT:-25}
+      BQ_STORE_EMAIL: ${BQ_STORE_EMAIL:-}
+      BQ_STORE_PHONE: ${BQ_STORE_PHONE:-}
+      BQ_WAREHOUSE_ADDRESS: ${BQ_WAREHOUSE_ADDRESS:-}
+      BQ_WAREHOUSE_LAT: ${BQ_WAREHOUSE_LAT:-}
+      BQ_WAREHOUSE_LNG: ${BQ_WAREHOUSE_LNG:-}
+    command: ["sh", "-c", "npm install --no-audit --no-fund --omit=dev >/dev/null && node seed.mjs --wait"]
+    volumes:
+      - ./seed:/seed
+    depends_on:
+      app:
+        condition: service_started
+    restart: "no"
+    mem_limit: 256m
+
+  # Louez's scheduled jobs (reminders, expired checkouts, calendar sync) every 15 minutes.
+  cron:
+    image: curlimages/curl:8.11.1
+    environment:
+      CRON_SECRET: ${CRON_SECRET}
+    entrypoint: ["/bin/sh", "-c"]
+    command:
+      - >-
+        while true; do
+          sleep 900;
+          curl -fsS -m 120 -H "Authorization: Bearer $CRON_SECRET" http://app:3000/api/cron >/dev/null || echo "cron call failed";
+        done
+    depends_on:
+      - app
+    restart: unless-stopped
+    mem_limit: 64m
+
+  # Nightly MySQL dump kept 14 days under /opt/bouncequest-rentals/backups (the VPS has
+  # no provider backups, so copy these off-host as well).
+  backup:
+    image: mysql:8.4
+    environment:
+      MYSQL_PWD: ${DB_ROOT_PASSWORD}
+    entrypoint: ["/bin/sh", "-c"]
+    command:
+      - >-
+        while true; do
+          sleep 300;
+          f=/backups/bouncequest-$$(date -u +%Y%m%dT%H%M%SZ).sql.gz;
+          mysqldump -h db -u root --single-transaction --routines louez | gzip > $$f.tmp && mv $$f.tmp $$f;
+          find /backups -name 'bouncequest-*.sql.gz' -mtime +14 -delete;
+          sleep 86100;
+        done
+    volumes:
+      - ./backups:/backups
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: unless-stopped
+    mem_limit: 256m
+
+volumes:
+  app_data:
+  mysql_data:
+  minio_data:
+  caddy_data:
+  caddy_config:

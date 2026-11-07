@@ -170,6 +170,16 @@ export const SETTINGS_NAVIGATION_ITEMS: SettingsNavigationItem[] = [
     navigation: true,
   },
   {
+    id: "price-templates",
+    href: "/dashboard/settings/price-templates",
+    icon: PricingIcon,
+    labelPath: "dashboard.settings.priceTemplates.title",
+    descriptionPath: "dashboard.settings.priceTemplates.description",
+    searchPaths: ["dashboard.settings.priceTemplates"],
+    group: "rental",
+    navigation: true,
+  },
+  {
     id: "taxes",
     href: "/dashboard/settings/taxes",
     icon: PercentageIcon,

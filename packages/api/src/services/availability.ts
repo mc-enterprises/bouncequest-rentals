@@ -509,8 +509,12 @@ async function computeStorefrontAvailability(params: {
 
   const advanceNoticeMinutes = store.settings?.advanceNoticeMinutes || 0;
   const minimumStartTime = getMinStartDateTime(advanceNoticeMinutes);
+  // BounceQuest: the max-advance limit closes the same gate as the notice period.
+  const maxAdvanceDays = store.settings?.maxAdvanceDays ?? null;
+  const withinMaxAdvance =
+    !maxAdvanceDays || startDate.getTime() <= Date.now() + maxAdvanceDays * 24 * 60 * 60 * 1000;
   const advanceNoticeValidation = {
-    valid: startDate >= minimumStartTime,
+    valid: startDate >= minimumStartTime && withinMaxAdvance,
     minimumStartTime: minimumStartTime.toISOString(),
     advanceNoticeMinutes,
   };

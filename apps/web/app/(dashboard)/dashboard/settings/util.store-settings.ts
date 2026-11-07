@@ -24,6 +24,8 @@ export interface ReservationRulesInput {
   turnoverBufferMinutes: number;
   requireCustomerAddress: boolean;
   contractSignatureMode: ContractSignatureMode;
+  /** BounceQuest: furthest bookable start in days; null = no limit. */
+  maxAdvanceDays?: number | null;
 }
 
 /** The required keys, for a store that was created before it had any settings. */
@@ -81,5 +83,6 @@ export function buildReservationRulesUpdate(
     turnoverBufferMinutes: input.turnoverBufferMinutes,
     requireCustomerAddress: input.requireCustomerAddress,
     contractSignatureMode: input.contractSignatureMode,
+    ...(input.maxAdvanceDays !== undefined ? { maxAdvanceDays: input.maxAdvanceDays } : {}),
   };
 }

@@ -54,6 +54,8 @@ const ALLOWED: Record<string, Expected> = {
     voids: true,
   },
   "quote→cancelled": { stock: null, billable: "outside", activityType: "cancelled", voids: true },
+  // BounceQuest: a Quote put on Hold (InflatableOffice).
+  "quote→pending": { stock: null, billable: "outside", activityType: "modified", voids: false },
   "confirmed→ongoing": {
     stock: null,
     billable: "stays",

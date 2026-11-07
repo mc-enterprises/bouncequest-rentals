@@ -22,6 +22,8 @@ export interface RentalPeriodRules {
   minRentalMinutes?: number;
   /** Minutes; `null` or `undefined` = no limit. */
   maxRentalMinutes?: number | null;
+  /** BounceQuest: latest bookable start, in days from today. Absent = no limit. */
+  maxAdvanceDays?: number | null;
 }
 
 export type RentalPeriodIssue =

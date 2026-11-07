@@ -127,7 +127,12 @@ export interface DeliverySettings {
   multiLocationEnabled?: boolean;
   /** How delivery is offered to customers */
   mode: DeliveryMode;
-  /** Price per kilometer in store currency */
+  /**
+   * BounceQuest: unit of pricePerKm and maximumDistance. "mi" (the BounceQuest default
+   * when absent) means price per mile and a maximum distance in miles.
+   */
+  distanceUnit?: "km" | "mi";
+  /** Price per distance unit (kilometer, or mile when distanceUnit is "mi") in store currency */
   pricePerKm: number;
   /** Minimum delivery fee per leg, regardless of distance */
   minimumFee: number;
@@ -303,6 +308,8 @@ export interface StoreSettings {
   maxRentalMinutes?: number | null;
   /** Minimum notice before start in minutes. Default: 1440 (24h). */
   advanceNoticeMinutes: number;
+  /** BounceQuest: furthest start date customers can book, in days from now. null = no limit. */
+  maxAdvanceDays?: number | null;
   /** Operational buffer after each return before stock is available again. Default: 0. */
   turnoverBufferMinutes?: number;
   requireCustomerAddress?: boolean;

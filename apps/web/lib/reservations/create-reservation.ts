@@ -673,6 +673,9 @@ const buildReservationValues = (
           signedAt: new Date(),
           signatureIp: request.termsAcceptedFromIp ?? null,
           signatureMethod: "checkout" as const,
+          signatureName: request.signatureName ?? null,
+          // InflatableOffice status: the contract is signed, the deposit is not paid yet.
+          eventStatus: "contracted" as const,
         }
       : {}),
     // Frozen at creation: the store can change its currency later (billing contract Q4).

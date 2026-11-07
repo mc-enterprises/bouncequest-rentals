@@ -1,4 +1,5 @@
 import { markReservation } from "./billing-queue";
+import { queueStatusWebhook } from "./event-status";
 import type { Transaction } from "./index";
 import { assertStoreCanTakeReservations } from "./reservation-gate";
 import {
@@ -69,5 +70,12 @@ export async function insertReservation(
   const plan = planReservationInsert(values, now);
   await tx.insert(reservations).values(plan.row);
   await markReservation(tx, { id: values.id, storeId: values.storeId });
+  // BounceQuest: tell n8n about the new event once the transaction has committed.
+  queueStatusWebhook({
+    reservationId: values.id,
+    previousStatus: null,
+    previousEventStatus: null,
+    event: "reservation.created",
+  });
   return { effects: plan.effects };
 }

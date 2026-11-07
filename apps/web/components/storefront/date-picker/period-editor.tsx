@@ -69,6 +69,7 @@ export const PeriodEditor = ({
     maxRentalMinutes: rules.maxRentalMinutes,
     businessHours: rules.businessHours,
     advanceNoticeMinutes: rules.advanceNoticeMinutes,
+    maxAdvanceDays: rules.maxAdvanceDays,
     minDate,
     timezone: rules.timezone,
   });

@@ -41,6 +41,7 @@ import { ReservationStoreLegsSummary } from "@/components/dashboard/reservation-
 import { storeLegLocationFromSnapshot } from "@/components/dashboard/util.reservation-store-legs";
 import { InvoiceDocumentsCard, type ReservationInvoiceDocument } from "./invoice-documents-card";
 import { getReservationDeliveryDisplayMode } from "./util.reservation-delivery-display";
+import { EventStatusCard } from "./event-status-card";
 
 type ReservationStatus =
   | "pending"
@@ -678,6 +679,14 @@ export function ReservationDetailClient({
           />
 
           {!readOnly && <AdvisorConversationCard reservationId={reservation.id} />}
+
+          <EventStatusCard
+            reservationId={reservation.id}
+            status={status}
+            eventStatus={(reservation as { eventStatus?: string | null }).eventStatus}
+            signedAt={(reservation as { signedAt?: unknown }).signedAt}
+            readOnly={readOnly}
+          />
 
           <ReservationNotes
             readOnly={readOnly}

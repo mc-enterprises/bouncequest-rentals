@@ -1,6 +1,6 @@
 {
   "app": {
-    "name": "Louez.io",
+    "name": "BounceQuest",
     "description": "Simple and modern equipment rental platform"
   },
   "common": {
@@ -214,15 +214,15 @@
       "sessionExpired": "Your session has expired. Sign in again, then retry.",
       "passwordSignUpDisabled": "Creating an account with a password is not available. Use a code sent by email."
     },
-    "referralBanner": "{storeName} invited you to Louez — set up your store in minutes.",
-    "referralBannerGeneric": "You've been invited to Louez — set up your store in minutes.",
+    "referralBanner": "{storeName} invited you to BounceQuest — set up your store in minutes.",
+    "referralBannerGeneric": "You've been invited to BounceQuest — set up your store in minutes.",
     "socialProofRating": "4.9/5",
     "socialProofTrusted": "450+ rental businesses trust us to run their rentals",
-    "review1Quote": "We left our old software when prices got too high for Louez.io… and honestly, no regrets! Simple, flexible, affordable and efficient.",
+    "review1Quote": "We left our old software when prices got too high for BounceQuest… and honestly, no regrets! Simple, flexible, affordable and efficient.",
     "review1Role": "Managing partner · Bicy, Dijon",
     "review2Quote": "Setup was quick and easy. The tool is intuitive, both for us managing rentals and for our customers when booking. A real time-saver every day.",
     "review2Role": "Co-founder · Bloom",
-    "review3Quote": "Louez.io is a reliable, clear and precise platform. Managing the season will be so much simpler and faster.",
+    "review3Quote": "BounceQuest is a reliable, clear and precise platform. Managing the season will be so much simpler and faster.",
     "review3Role": "Co-founder · Les Frères Complices",
     "perk1": "24/7 bookings, online payment and deposit",
     "perk2": "Automatic contracts and a client portal",
@@ -285,7 +285,7 @@
         "unsupported": "Use a supported browser and a secure connection (HTTPS).",
         "remove": "Remove",
         "removeTitle": "Remove this passkey?",
-        "removeDescription": "You will no longer be able to use it to sign in to Louez. Your other sign-in methods remain available. You can also remove it from your device’s passkey manager.",
+        "removeDescription": "You will no longer be able to use it to sign in to BounceQuest. Your other sign-in methods remain available. You can also remove it from your device’s passkey manager.",
         "removed": "Passkey removed",
         "cancel": "Cancel"
       },
@@ -559,7 +559,7 @@
       "description": "Manage your store's team members",
       "addMember": "Add a team member",
       "addMemberDescription": "Invite a team member to join your store by email",
-      "addMemberHint": "If the user already has a Louez account, they will be added directly. Otherwise, they will receive an invitation by email.",
+      "addMemberHint": "If the user already has a BounceQuest account, they will be added directly. Otherwise, they will receive an invitation by email.",
       "emailPlaceholder": "email@example.com",
       "invite": "Invite",
       "members": "Members",
@@ -568,7 +568,7 @@
       "removeMember": "Remove from team",
       "memberAdded": "Team member added successfully",
       "memberRemoved": "Team member removed",
-      "googleAccessReminder": "When a member leaves, also review their Google Search Console access. Removing them from Louez does not revoke their Google access.",
+      "googleAccessReminder": "When a member leaves, also review their Google Search Console access. Removing them from BounceQuest does not revoke their Google access.",
       "reviewGoogleAccess": "Review Google access",
       "pendingInvitations": "Pending invitations",
       "pendingInvitationsDescription": "These people have not yet accepted their invitation",
@@ -585,7 +585,7 @@
       "cannotRemoveOwner": "Cannot remove the owner",
       "ownerBadge": "Owner",
       "memberBadge": "Team member",
-      "userNotFound": "User not found. This person must first create a Louez account.",
+      "userNotFound": "User not found. This person must first create a BounceQuest account.",
       "limitReached": "You have reached the team member limit for your plan.",
       "limitBadge": "{current} / {limit}",
       "featureNotAvailable": "Team members unavailable",
@@ -611,9 +611,9 @@
       },
       "link": {
         "title": "Refer & earn",
-        "description": "Share your link and invite other rental businesses to join Louez.",
+        "description": "Share your link and invite other rental businesses to join BounceQuest.",
         "reward": "For every rental business you refer that makes its first sale, you earn {referrer} free reservations (≈ {rewardValue}).",
-        "rewardInvoiceCredit": "For every rental business you refer that makes its first sale, you earn a {rewardValue} credit on your Louez invoice.",
+        "rewardInvoiceCredit": "For every rental business you refer that makes its first sale, you earn a {rewardValue} credit on your BounceQuest invoice.",
         "copyLink": "Copy link",
         "linkCopied": "Link copied!",
         "linkCopyFailed": "Could not copy the link.",
@@ -643,7 +643,7 @@
         }
       },
       "nudge": {
-        "title": "Enjoying Louez?",
+        "title": "Enjoying BounceQuest?",
         "description": "Refer a rental business — you earn {count} free reservations (≈ {rewardValue}) once they make their first online sale.",
         "descriptionInvoiceCredit": "Refer a rental business — you earn a {rewardValue} credit once they make their first online sale.",
         "cta": "Refer",
@@ -659,10 +659,10 @@
         "open": "How it works",
         "title": "How referrals work",
         "step1": "Share your invitation link with other rental businesses.",
-        "step2": "Your referral creates their Louez store through your link.",
+        "step2": "Your referral creates their BounceQuest store through your link.",
         "step3": "As soon as your referral makes their first online sale of at least {minAmount}, you earn {count} free reservations.",
-        "step3InvoiceCredit": "As soon as your referral makes their first online sale of at least {minAmount}, you earn a credit on your next Louez invoice.",
-        "note": "Only sales paid online (card/Stripe) unlock the reward — manual or cash payments don't count. Free reservations are rentals with no Louez commission."
+        "step3InvoiceCredit": "As soon as your referral makes their first online sale of at least {minAmount}, you earn a credit on your next BounceQuest invoice.",
+        "note": "Only sales paid online (card/Stripe) unlock the reward — manual or cash payments don't count. Free reservations are rentals with no BounceQuest commission."
       }
     },
     "sms": {
@@ -991,7 +991,7 @@
           "eveningAnonymous": "Good evening"
         },
         "subtitle": {
-          "virgin": "Welcome to Louez. Let's set up your store.",
+          "virgin": "Welcome to BounceQuest. Let's set up your store.",
           "building": "{count, plural, one {# product created} other {# products created}}. Share your store!",
           "pending": "{count, plural, one {# pending request} other {# pending requests}}",
           "operations": "{count, plural, one {# operation today} other {# operations today}}",
@@ -2456,7 +2456,7 @@
           "free": "Free",
           "included": "Included",
           "totalFee": "Total delivery fee",
-          "tooFar": "Address exceeds maximum distance ({maxDistance} km)",
+          "tooFar": "Address exceeds maximum distance ({maxDistance} mi)",
           "savings": "Savings",
           "deliveryFee": "Delivery fee"
         }
@@ -2611,15 +2611,15 @@
         "deliveryDistance": "Distance",
         "deliveryFee": "Delivery fee",
         "deliveryOptionLabel": "Delivery",
-        "deliveryTooFar": "Address is beyond the maximum delivery distance ({maxKm} km)",
-        "returnTooFar": "Return address is beyond the maximum delivery distance ({maxKm} km)",
+        "deliveryTooFar": "Address is beyond the maximum delivery distance ({maxKm} mi)",
+        "returnTooFar": "Return address is beyond the maximum delivery distance ({maxKm} mi)",
         "differentReturnAddress": "Different return address",
         "differentReturnAddressDescription": "Equipment will be returned to a different address",
         "returnAddress": "Return address",
         "returnAddressPlaceholder": "Enter the return address...",
         "returnDistance": "Return distance",
-        "roundTripNote": "Round trip: {distance} km × 2 = {total} km",
-        "roundTripNoteDifferentReturn": "Delivery: {deliveryKm} km + Return: {returnKm} km = {total} km",
+        "roundTripNote": "Round trip: {distance} mi × 2 = {total} mi",
+        "roundTripNoteDifferentReturn": "Delivery: {deliveryKm} mi + Return: {returnKm} mi = {total} mi",
         "freeDeliveryApplied": "Free delivery applied",
         "freeDeliveryAbove": "Free delivery for orders above {amount}",
         "free": "Free",
@@ -3475,7 +3475,7 @@
         },
         "subscribe": {
           "title": "Subscribe with a link",
-          "help": "Read-only subscription. Louez publishes changes immediately, but each calendar app decides how often it refreshes.",
+          "help": "Read-only subscription. BounceQuest publishes changes immediately, but each calendar app decides how often it refreshes.",
           "apple": "Apple Calendar",
           "outlook": "Outlook",
           "google": "Google Calendar",
@@ -3680,7 +3680,7 @@
           },
           "mapping": {
             "title": "Product mapping",
-            "description": "Link Louez products with Tulip products and manage updates.",
+            "description": "Link BounceQuest products with Tulip products and manage updates.",
             "disabledMessage": "Enter and validate your Tulip account identifier before mapping products.",
             "columns": {
               "product": "Product",
@@ -3826,10 +3826,10 @@
           "googleCalendar": {
             "name": "Google Calendar",
             "description": "Connect Google Calendar with OAuth to synchronize reservations into a dedicated calendar.",
-            "about": "Louez creates a dedicated Google calendar for your store, then pushes reservation creations, updates, and cancellations asynchronously.",
+            "about": "BounceQuest creates a dedicated Google calendar for your store, then pushes reservation creations, updates, and cancellations asynchronously.",
             "features": {
               "oauth": "Dedicated Google OAuth connection, separate from user sign-in.",
-              "sync": "One-way synchronization from Louez reservations to a dedicated Google calendar.",
+              "sync": "One-way synchronization from BounceQuest reservations to a dedicated Google calendar.",
               "retry": "Synchronization queue with automatic retries when the provider fails."
             },
             "resources": {
@@ -3851,10 +3851,10 @@
           "superpdp": {
             "name": "Super PDP",
             "description": "Connect your company to an accredited platform to send and receive electronic invoices.",
-            "about": "Super PDP connects Louez to the official electronic invoicing network and handles company enrollment, invoice transmission, receipt, and lifecycle updates.",
+            "about": "Super PDP connects BounceQuest to the official electronic invoicing network and handles company enrollment, invoice transmission, receipt, and lifecycle updates.",
             "features": {
               "send": "Send customer invoices over the official network.",
-              "receive": "Receive supplier invoices in Louez.",
+              "receive": "Receive supplier invoices in BounceQuest.",
               "lifecycle": "Track invoice delivery and payment statuses."
             },
             "resources": {
@@ -3864,7 +3864,7 @@
           "tulip": {
             "name": "Tulip Insurance",
             "description": "Connect Tulip to offer breakage, theft, and vandalism insurance on your rentals.",
-            "about": "How it works: the coverage is offered during reservation or when signing the rental contract. The renter can subscribe in a few clicks depending on the selected guarantees. In case of a claim, the rental company reports it on the Tulip platform. How to configure: contract with Tulip and define whether insurance is included in the rental or offered as an option during reservation. Enable the Tulip integration in Louez.io with your access key from Tulip. Configure your account and start offering the service. About: Tulip specializes in professional equipment rental and works with more than 500 rental companies. Tulip is a French company registered with Orias since 2019 (19001215).",
+            "about": "How it works: the coverage is offered during reservation or when signing the rental contract. The renter can subscribe in a few clicks depending on the selected guarantees. In case of a claim, the rental company reports it on the Tulip platform. How to configure: contract with Tulip and define whether insurance is included in the rental or offered as an option during reservation. Enable the Tulip integration in BounceQuest with your access key from Tulip. Configure your account and start offering the service. About: Tulip specializes in professional equipment rental and works with more than 500 rental companies. Tulip is a French company registered with Orias since 2019 (19001215).",
             "aboutSections": {
               "howItWorks": {
                 "title": "How it works",
@@ -3875,7 +3875,7 @@
               "configure": {
                 "title": "How to configure",
                 "contract": "Contract with Tulip and define whether insurance is included in the rental or offered as an option during reservation.",
-                "enable": "Enable the Tulip integration in Louez.io with your access key from Tulip.",
+                "enable": "Enable the Tulip integration in BounceQuest with your access key from Tulip.",
                 "start": "Configure your account and start offering the service."
               },
               "about": {
@@ -3899,7 +3899,7 @@
         "comingSoon": "Coming soon",
         "noIntegrations": "No integrations available yet.",
         "sections": {
-          "byLouez": "By Louez.io",
+          "byLouez": "By BounceQuest",
           "calendar": "Calendar",
           "insurance": "Insurance"
         },
@@ -3976,7 +3976,7 @@
         },
         "noSubscription": {
           "title": "Level up your business",
-          "description": "Unlock all features of Louez with a paid subscription.",
+          "description": "Unlock all features of BounceQuest with a paid subscription.",
           "viewPlans": "View plans"
         },
         "currentPlan": {
@@ -4104,18 +4104,18 @@
       },
       "billing": {
         "label": "Billing",
-        "description": "Your Louez offer, this month, your billing card, your billing details and your statements.",
-        "offerTitle": "Your Louez offer",
-        "offerPending": "Your offer will show here once Louez has set up billing for this store.",
+        "description": "Your BounceQuest offer, this month, your billing card, your billing details and your statements.",
+        "offerTitle": "Your BounceQuest offer",
+        "offerPending": "Your offer will show here once BounceQuest has set up billing for this store.",
         "status": {
           "accepting": "Taking reservations",
           "blocked": "Reservations paused"
         },
         "blocked": {
           "payment_method_required": "Add a billing card to take new reservations.",
-          "payment_overdue": "A Louez billing payment failed. Settle it to take new reservations.",
+          "payment_overdue": "A BounceQuest billing payment failed. Settle it to take new reservations.",
           "balance_limit_reached": "Your balance due has reached the limit for stores without a card. Add a billing card and reservations resume.",
-          "suspended": "Billing for this store is suspended. Contact Louez to take reservations again."
+          "suspended": "Billing for this store is suspended. Contact BounceQuest to take reservations again."
         },
         "readOnly": "As a platform admin, you see this store's billing read-only.",
         "manage": "Manage billing",
@@ -4130,7 +4130,7 @@
         },
         "card": {
           "title": "Billing card",
-          "description": "Louez charges this card what the fees taken at source don't cover.",
+          "description": "BounceQuest charges this card what the fees taken at source don't cover.",
           "saved": "{brand} ending in {last4}",
           "otherBrand": "Card",
           "onFile": "A payment method is saved.",
@@ -4152,7 +4152,7 @@
         },
         "details": {
           "title": "Billing details",
-          "description": "Your invoices from Louez show these details.",
+          "description": "Your invoices from BounceQuest show these details.",
           "noCustomer": "Add a billing card first. Your billing details are saved with it.",
           "unavailable": "Your billing details can't be shown right now. Try again later.",
           "legalName": "Legal name",
@@ -4188,13 +4188,13 @@
         },
         "statements": {
           "title": "Statements",
-          "description": "What Louez bills your store, month by month.",
+          "description": "What BounceQuest bills your store, month by month.",
           "notFinal": "Not final yet: these amounts follow your reservations and payments as they stand. Invoices aren't available yet.",
           "open": "Not final",
           "summary": "Owed {owed} · Taken at source {atSource}",
           "creditOf": "Credit of {amount}",
-          "legacy": "Louez bills your store as before for now. Your statements will appear here once your billing moves to this page.",
-          "legacyUntil": "Louez bills your store as before until {date}. Your statements appear here from then on.",
+          "legacy": "BounceQuest bills your store as before for now. Your statements will appear here once your billing moves to this page.",
+          "legacyUntil": "BounceQuest bills your store as before until {date}. Your statements appear here from then on.",
           "empty": "No statement yet. Your first one appears here once something is billed to your store."
         },
         "statement": {
@@ -5074,9 +5074,9 @@
           "label": "Verification code",
           "help": "The whole tag or just its content; the code stays active as long as it is saved here.",
           "accessDescription": "This code gives the associated Google account Search Console owner rights for your store: viewing statistics, managing users and requesting removal from Google search results.",
-          "ownerOnly": "Only the store owner and Louez platform administrators can change this code.",
+          "ownerOnly": "Only the store owner and BounceQuest platform administrators can change this code.",
           "removeCode": "Remove code",
-          "revokeHelp": "To revoke access, remove the user in Search Console and all their ownership verification tokens. If their code is in this field, clear it and save. Removing a member from Louez does not revoke their Google access.",
+          "revokeHelp": "To revoke access, remove the user in Search Console and all their ownership verification tokens. If their code is in this field, clear it and save. Removing a member from BounceQuest does not revoke their Google access.",
           "manageAccess": "How to revoke Google access",
           "placeholder": "<meta name=\"google-site-verification\" content=\"…\" />"
         }
@@ -5145,7 +5145,7 @@
       },
       "invoicing": {
         "title": "Electronic invoicing",
-        "description": "Set up mandatory e-invoice reception and choose whether Louez also issues your invoices.",
+        "description": "Set up mandatory e-invoice reception and choose whether BounceQuest also issues your invoices.",
         "saved": "Invoicing settings saved",
         "statusComplete": "Complete",
         "statusIncomplete": "To complete",
@@ -5159,10 +5159,10 @@
           "later": "Set up later",
           "intro": {
             "title": "Get your company ready for electronic invoicing",
-            "description": "Connect your company to the official network to receive supplier invoices. You can also have Louez issue your invoices now.",
+            "description": "Connect your company to the official network to receive supplier invoices. You can also have BounceQuest issue your invoices now.",
             "bullets": {
-              "generate": "If you enable issuing, Louez generates and numbers a compliant invoice with every payment.",
-              "transmit": "If you enable issuing, Louez sends invoices to business customers and handles sales e-reporting.",
+              "generate": "If you enable issuing, BounceQuest generates and numbers a compliant invoice with every payment.",
+              "transmit": "If you enable issuing, BounceQuest sends invoices to business customers and handles sales e-reporting.",
               "receive": "Centralized reception of your suppliers' invoices."
             },
             "start": "Start setup",
@@ -5216,7 +5216,7 @@
         },
         "louezInvoicing": {
           "title": "Invoice issuing",
-          "description": "Choose whether Louez should issue your invoices now. You can change this choice at any time.",
+          "description": "Choose whether BounceQuest should issue your invoices now. You can change this choice at any time.",
           "statusActive": "Issuing enabled",
           "statusReceptionOnly": "Reception only",
           "statusInactive": "Disabled",
@@ -5224,9 +5224,9 @@
           "lockedDescription": "A legal invoice must carry your legal name, legal form, company number and registered address. Fill in step 1 before choosing your invoicing mode.",
           "choiceLabel": "How would you like to use electronic invoicing?",
           "emissionAndReception": "Issuing + reception (recommended)",
-          "emissionAndReceptionDescription": "Louez generates, numbers and transmits your invoices with every payment. Your company also receives supplier invoices.",
-          "receptionOnly": "Reception only — I am not issuing invoices through Louez yet",
-          "receptionOnlyDescription": "Louez does not issue invoices. Your company stays connected to receive supplier invoices.",
+          "emissionAndReceptionDescription": "BounceQuest generates, numbers and transmits your invoices with every payment. Your company also receives supplier invoices.",
+          "receptionOnly": "Reception only — I am not issuing invoices through BounceQuest yet",
+          "receptionOnlyDescription": "BounceQuest does not issue invoices. Your company stays connected to receive supplier invoices.",
           "reformTimeline": "Receiving e-invoices becomes mandatory in September 2026. Issuing becomes mandatory in September 2027 and can be enabled here at any time.",
           "vatRegime": "VAT regime",
           "vatRegimePlaceholder": "Choose your regime",
@@ -5246,7 +5246,7 @@
           "statusPending": "Enrollment in progress",
           "statusActionRequired": "Action required",
           "deadlineTitle": "September 2026 deadline",
-          "deadlineDescription": "From September 2026, every French company must be connected to an accredited platform to receive its electronic invoices; issuing becomes mandatory in September 2027. Connecting from Louez is free of charge.",
+          "deadlineDescription": "From September 2026, every French company must be connected to an accredited platform to receive its electronic invoices; issuing becomes mandatory in September 2027. Connecting from BounceQuest is free of charge.",
           "benefits": {
             "send": "Send invoices to business customers if you enable issuing.",
             "receive": "Receive all your supplier invoices in one place.",
@@ -5260,9 +5260,9 @@
           "errorTitle": "Connection interrupted",
           "reconnectAction": "Reconnect my company",
           "errorHints": {
-            "reconnectRequired": "The platform revoked Louez's access. Reconnect your company to receive invoices and resume any enabled sending.",
+            "reconnectRequired": "The platform revoked BounceQuest's access. Reconnect your company to receive invoices and resume any enabled sending.",
             "oauthFailed": "The enrollment could not be completed. Start it again; if the problem persists, contact support.",
-            "operationFailed": "The last exchange with the platform failed. Louez will retry automatically; reconnect if the problem persists."
+            "operationFailed": "The last exchange with the platform failed. BounceQuest will retry automatically; reconnect if the problem persists."
           },
           "lockedTitle": "Connection not available yet",
           "lockedReasons": {
@@ -5292,12 +5292,12 @@
           },
           "result": {
             "successTitle": "Company connected",
-            "successDescription": "Your company is now enrolled with the accredited platform and can receive supplier invoices. Invoices issued by Louez will also be transmitted if you enable issuing.",
+            "successDescription": "Your company is now enrolled with the accredited platform and can receive supplier invoices. Invoices issued by BounceQuest will also be transmitted if you enable issuing.",
             "errorTitle": "Connection failed",
             "errors": {
               "oauth": "The enrollment was interrupted before it could be completed. You can start it again.",
               "legalProfileIncomplete": "Your legal identity is incomplete. Fill in step 1, then start the connection again.",
-              "notConfigured": "Electronic transmission is not configured on this environment. Contact Louez support."
+              "notConfigured": "Electronic transmission is not configured on this environment. Contact BounceQuest support."
             }
           },
           "purchaseInvoicesAction": "Open supplier invoices"
@@ -5323,8 +5323,8 @@
         "customerAddressNoteOptional": "When delivery is enabled, customers can choose between pickup and delivery.",
         "customerAddressNoteRequired": "Customers must provide a delivery address.",
         "pricingSection": "Pricing",
-        "pricePerKm": "Price per kilometer",
-        "pricePerKmDescription": "Amount charged per kilometer traveled",
+        "pricePerKm": "Price per mile",
+        "pricePerKmDescription": "Amount charged per mile traveled",
         "minimumFee": "Minimum fee",
         "minimumFeeDescription": "Minimum amount charged regardless of distance",
         "tripType": "Trip type",
@@ -5333,8 +5333,8 @@
         "roundTrip": "Round trip",
         "roundTripDescription": "Price includes delivery and pickup",
         "exampleTitle": "Calculation example",
-        "example": "Delivery at {distance} km = {fee}",
-        "roundTripNote": "{distance} km x 2 = {total} km charged",
+        "example": "Delivery at {distance} mi = {fee}",
+        "roundTripNote": "{distance} mi x 2 = {total} mi charged",
         "optionalSection": "Optional settings",
         "maximumDistance": "Maximum distance",
         "maximumDistanceDescription": "Leave empty for no limit",
@@ -5368,7 +5368,7 @@
           "result": "Delivery fee",
           "free": "Free",
           "notAvailable": "Not available",
-          "tooFar": "Distance exceeds maximum ({max} km)",
+          "tooFar": "Distance exceeds maximum ({max} mi)",
           "freeDeliveryApplied": "Free delivery applied",
           "minimumApplied": "Minimum fee applied",
           "freeAbove": "Free above {amount}",
@@ -5821,12 +5821,12 @@
         "deleteAccountWarning": "This action is irreversible. Only records required by law may remain in a separate archive.",
         "accountDeletion": {
           "reasonTitle": "Before you go",
-          "reasonDescription": "Why are you leaving Louez? Your answer is optional and saved without your identity.",
+          "reasonDescription": "Why are you leaving BounceQuest? Your answer is optional and saved without your identity.",
           "reasons": {
             "tooExpensive": "The price is too high",
             "missingFeatures": "I need features that are missing",
-            "difficultToUse": "Louez is too difficult to use",
-            "noLongerNeeded": "I no longer need Louez",
+            "difficultToUse": "BounceQuest is too difficult to use",
+            "noLongerNeeded": "I no longer need BounceQuest",
             "switchedService": "I use another solution",
             "technicalIssues": "I had too many technical issues",
             "privacyConcerns": "I have privacy concerns",
@@ -5835,12 +5835,12 @@
           "continue": "Continue",
           "back": "Back",
           "title": "Delete your account",
-          "description": "Review what will happen before you continue. Deletion cannot be undone. Louez billing records required by law may remain archived.",
+          "description": "Review what will happen before you continue. Deletion cannot be undone. BounceQuest billing records required by law may remain archived.",
           "storesDeleted": "Stores deleted with all their active data:",
           "membershipsLeft": "You will also leave {count, plural, one {# other store} other {# other stores}} where you are a member.",
-          "businessDocumentsDeleted": "{count, plural, one {# business invoice from your store will be deleted from Louez} other {# business invoices from your stores will be deleted from Louez}}. Export them before continuing if you need to keep them.",
-          "legalRetention": "{count, plural, one {# Louez billing record will be kept} other {# Louez billing records will be kept}} for 10 years after the financial year closes, in a separate restricted-access archive.",
-          "googleCalendarNotice": "Louez will delete the calendar it created in your Google Calendar. If Google no longer gives Louez access to it, that calendar stays in your Google account and you can delete it from Google Calendar.",
+          "businessDocumentsDeleted": "{count, plural, one {# business invoice from your store will be deleted from BounceQuest} other {# business invoices from your stores will be deleted from BounceQuest}}. Export them before continuing if you need to keep them.",
+          "legalRetention": "{count, plural, one {# BounceQuest billing record will be kept} other {# BounceQuest billing records will be kept}} for 10 years after the financial year closes, in a separate restricted-access archive.",
+          "googleCalendarNotice": "BounceQuest will delete the calendar it created in your Google Calendar. If Google no longer gives BounceQuest access to it, that calendar stays in your Google account and you can delete it from Google Calendar.",
           "confirmationLabel": "Enter {email} to confirm",
           "passwordLabel": "Current password",
           "passwordRequired": "Enter your current password.",
@@ -5860,7 +5860,7 @@
           "confirmPageDescription": "This will immediately delete your account, your stores and their active data. It cannot be undone.",
           "confirmFinal": "Permanently delete my account",
           "deletedTitle": "Account deleted",
-          "deletedDescription": "Your account, stores, and their data have been deleted. Only any Louez billing records remain isolated until their statutory retention period ends.",
+          "deletedDescription": "Your account, stores, and their data have been deleted. Only any BounceQuest billing records remain isolated until their statutory retention period ends.",
           "backHome": "Back to home"
         },
         "signOut": "Sign out",
@@ -5887,7 +5887,7 @@
           "linked": "Linked",
           "notLinked": "Not linked",
           "linkGoogle": "Link",
-          "googleLinkError": "This Google account could not be linked. Make sure it uses the same email address as your Louez account.",
+          "googleLinkError": "This Google account could not be linked. Make sure it uses the same email address as your BounceQuest account.",
           "password": "Password",
           "passwordNotSet": "Not set",
           "passwordSetOn": "Set on {date}",
@@ -6275,7 +6275,7 @@
             },
             "marketplaceTermsAccepted": {
               "label": "Marketplace terms accepted",
-              "description": "The marketplace terms apply to bookings that come from reeent, on top of your Louez offer.",
+              "description": "The marketplace terms apply to bookings that come from reeent, on top of your BounceQuest offer.",
               "acceptedAt": "Accepted on {date}"
             }
           }
@@ -6358,7 +6358,7 @@
           },
           "noTarget": "No product selected",
           "hidden": "Hidden",
-          "louez": "Louez field"
+          "louez": "BounceQuest field"
         },
         "dialog": {
           "label": "Label",
@@ -6706,7 +6706,7 @@
             "saving": "Saving…",
             "saved": "Saved",
             "format": "Format",
-            "formatHelp": "Louez checks the number typed in and formats it.",
+            "formatHelp": "BounceQuest checks the number typed in and formats it.",
             "formatFreeHelp": "Any text is accepted.",
             "formats": {
               "free": "Free text",
@@ -6746,7 +6746,7 @@
             }
           },
           "native": {
-            "fixed": "Louez field: its name and type are fixed."
+            "fixed": "BounceQuest field: its name and type are fixed."
           },
           "visibility": {
             "shown": {
@@ -6790,6 +6790,10 @@
             "applied": "Settings applied"
           }
         }
+      },
+      "priceTemplates": {
+        "title": "Shared prices",
+        "description": "Flat and tiered-by-hours prices shared by many items"
       }
     },
     "commandPalette": {
@@ -6907,8 +6911,8 @@
     },
     "whatsNew": {
       "title": "What's new",
-      "description": "The latest improvements to Louez",
-      "pageDescription": "Everything we shipped to Louez, newest first — and why we built it.",
+      "description": "The latest improvements to BounceQuest",
+      "pageDescription": "Everything we shipped to BounceQuest, newest first — and why we built it.",
       "newLabel": "New",
       "newFeatureLabel": "New feature",
       "unread": "Unread",
@@ -6972,7 +6976,7 @@
         },
         "keyboard-shortcuts": {
           "title": "For those who never leave the keyboard",
-          "description": "Eight everyday actions open from the keyboard, and every one of them can be remapped in your account — two-key sequences included. If you spend your days in Louez, this is for you. If not, everything still works with the mouse."
+          "description": "Eight everyday actions open from the keyboard, and every one of them can be remapped in your account — two-key sequences included. If you spend your days in BounceQuest, this is for you. If not, everything still works with the mouse."
         },
         "navigation-refresh": {
           "title": "⌘K takes you anywhere",
@@ -7106,7 +7110,7 @@
       }
     },
     "starPrompt": {
-      "title": "Louez is free — forever",
+      "title": "BounceQuest is free — forever",
       "description": "No subscription, no commission on your bookings. You will never get an invoice from us.",
       "pitch": "The only payment we ask for is a star on GitHub. It takes two seconds, and it is what keeps the project going.",
       "sourceHint": "Browse the source code",
@@ -7677,11 +7681,11 @@
       "collectFromAddress": "Pick up from my address",
       "pickupOption": "Store pickup",
       "deliveryOption": "Home delivery",
-      "deliveryOptionDescription": "Starting at {pricePerKm}/km",
+      "deliveryOptionDescription": "Starting at {pricePerKm}/mi",
       "deliveryAvailableFrom": "Delivery available from {amount} of rental",
-      "distanceKm": "{distance} km",
-      "pricePerKm": "{price}/km",
-      "deliveryAreaSummary": "{maxKm} km delivery area · {pricePerKm}/km",
+      "distanceKm": "{distance} mi",
+      "pricePerKm": "{price}/mi",
+      "deliveryAreaSummary": "{maxKm} mi delivery area · {pricePerKm}/mi",
       "useMyLocation": "Use my location",
       "sortByDistance": "Sort by distance from me",
       "sortByDistanceHint": "See which location is closest",
@@ -7708,12 +7712,12 @@
       "legFee": "Fee",
       "totalDeliveryFee": "Total delivery fee",
       "free": "Free",
-      "deliveryTooFar": "Sorry, we don't deliver beyond {maxKm} km",
+      "deliveryTooFar": "Sorry, we don't deliver beyond {maxKm} mi",
       "differentReturnAddress": "Different return address",
       "differentReturnAddressDescription": "Equipment will be picked up at a different address",
       "returnAddress": "Return address",
       "returnDistance": "Return distance",
-      "returnTooFar": "Sorry, return address is beyond {maxKm} km",
+      "returnTooFar": "Sorry, return address is beyond {maxKm} mi",
       "contactDescription": "We need this information to contact you",
       "addressDescription": "Enter your address details to continue",
       "confirmDescription": "Review your information before confirming",
@@ -8491,7 +8495,7 @@
       }
     },
     "marketplaceShell": {
-      "marketplaceName": "Louez Marketplace"
+      "marketplaceName": "BounceQuest Marketplace"
     },
     "footer": {
       "description": "Simple and efficient equipment rental.",
@@ -8667,7 +8671,7 @@
       "deliveryOptional": "Delivery available",
       "deliveryRequired": "Delivery to the address of your choice",
       "deliveryIncluded": "Delivery included",
-      "deliveryRadius": "up to {km} km",
+      "deliveryRadius": "up to {km} mi",
       "deliveryFree": "free from {amount}",
       "deliveryFrom": "from {amount} per trip",
       "moreTitle": "Learn more",
@@ -8706,7 +8710,7 @@
   },
   "onboarding": {
     "welcome": {
-      "title": "Welcome to Louez.io",
+      "title": "Welcome to BounceQuest",
       "description": "Set up your store in a few steps"
     },
     "profile": {
@@ -8826,11 +8830,11 @@
         "description": "On reeent, customers book and pay online. That's what earns your store the “Book online” badge and lifts it up the results.",
         "whyTitle": "Why it's required",
         "panelWhyTitle": "Why Stripe on reeent?",
-        "why1": "Payments go straight from the customer to your bank account, through Stripe. Neither reeent nor Louez ever touches the money.",
+        "why1": "Payments go straight from the customer to your bank account, through Stripe. Neither reeent nor BounceQuest ever touches the money.",
         "why2": "That's what makes instant booking possible — nothing to chase, nothing left unpaid on your side.",
-        "withoutStripe": "Without an active Stripe account your Louez store still works (reservations fall back to manual approval), but it only shows up on reeent once Stripe is active.",
+        "withoutStripe": "Without an active Stripe account your BounceQuest store still works (reservations fall back to manual approval), but it only shows up on reeent once Stripe is active.",
         "later": "Later",
-        "laterNote": "You can turn it on from your dashboard whenever you want. Your store is published on reeent automatically as soon as Stripe is active; until then, your Louez reservations go through manual approval."
+        "laterNote": "You can turn it on from your dashboard whenever you want. Your store is published on reeent automatically as soon as Stripe is active; until then, your BounceQuest reservations go through manual approval."
       },
       "panel": {
         "payment": {
@@ -8878,7 +8882,7 @@
     },
     "source": {
       "title": "One last thing…",
-      "description": "How did you hear about Louez?",
+      "description": "How did you hear about BounceQuest?",
       "wordOfMouth": "Word of mouth",
       "searchEngine": "Search engine (Google…)",
       "instagramTiktok": "Instagram / TikTok",
@@ -8892,9 +8896,9 @@
       "finish": "Finish",
       "panel": {
         "title": "A note from the team",
-        "p1": "Welcome to Louez, and thank you for your trust. Your store is ready, we can't wait to see your first bookings.",
+        "p1": "Welcome to BounceQuest, and thank you for your trust. Your store is ready, we can't wait to see your first bookings.",
         "p2": "A question or an idea? Write to us through the help button at the bottom left, we read everything.",
-        "signature": "The founders of Louez"
+        "signature": "The founders of BounceQuest"
       }
     },
     "steps": {
@@ -8922,8 +8926,8 @@
         "title": "What to know",
         "products": {
           "title": "Two products, one account",
-          "body": "reeent is the storefront: that's where customers find your gear. Louez is your tool: bookings, payments and calendar are handled here.",
-          "individualBody": "You don't need a company. reeent is the storefront, Louez is your tool: list your items, manage your bookings and get paid online."
+          "body": "reeent is the storefront: that's where customers find your gear. BounceQuest is your tool: bookings, payments and calendar are handled here.",
+          "individualBody": "You don't need a company. reeent is the storefront, BounceQuest is your tool: list your items, manage your bookings and get paid online."
         },
         "offer": {
           "title": "Launch offer",
@@ -8932,7 +8936,7 @@
           "closedBody": "The launch offer is full. Publishing on reeent is still the simplest way to get seen."
         },
         "pricing": {
-          "title": "What Louez costs",
+          "title": "What BounceQuest costs",
           "amount": "1 €",
           "amountUnit": "per booking",
           "amountDetail": "Decreasing with volume.",
@@ -9073,7 +9077,7 @@
       "tvaNotApplicable": "VAT not applicable, art. 293 B of the CGI"
     },
     "footer": {
-      "poweredBy": "Powered by Louez.io",
+      "poweredBy": "Powered by BounceQuest",
       "generatedOn": "Document generated on {date}"
     }
   },
@@ -9239,8 +9243,9 @@
     "businessHoursViolation": "Selected times are outside the store's business hours",
     "returnAddressInvalid": "Invalid return address coordinates",
     "returnAddressRequired": "Please enter a valid return address",
-    "returnAddressTooFar": "Return address is too far ({maxKm} km maximum)",
+    "returnAddressTooFar": "Return address is too far ({maxKm} mi maximum)",
     "advanceNoticeViolation": "Reservations must be made at least {duration} in advance",
+    "maxAdvanceViolation": "Bookings open up to {days} days ahead. Please pick an earlier date.",
     "noReservationsWithEmail": "No reservations found with this email",
     "noReservationForEmail": "No reservations found with this email",
     "sendCodeError": "Error sending code",
@@ -9297,7 +9302,7 @@
     "deliveryMinimumOrderAmountNotMet": "Delivery is available from {amount} of rental",
     "deliveryAddressRequired": "Please enter a valid delivery address",
     "storeCoordinatesNotConfigured": "Store coordinates are not configured",
-    "deliveryTooFar": "The delivery address is too far (maximum {maxDistance} km)",
+    "deliveryTooFar": "The delivery address is too far (maximum {maxDistance} mi)",
     "deliveryRequired": "Delivery is required for this store",
     "storeCoordinatesInvalid": "Store coordinates are invalid",
     "promoCodeInvalid": "This promo code is invalid or does not exist",
@@ -9387,7 +9392,7 @@
     "profileFieldInvalid": "“{field}” is not valid."
   },
   "welcome": {
-    "greeting": "Welcome to Louez.io",
+    "greeting": "Welcome to BounceQuest",
     "tagline": "Your store is ready",
     "skip": "Press to continue"
   },
@@ -9398,10 +9403,10 @@
     "contactEmail": "contact@louez.io",
     "terms": {
       "title": "Terms of Service",
-      "intro": "These terms of service govern access to and use of the Louez.io platform. By creating an account, you agree to be bound by all of these terms.",
+      "intro": "These terms of service govern access to and use of the BounceQuest platform. By creating an account, you agree to be bound by all of these terms.",
       "s1": {
         "title": "Purpose of the service",
-        "body": "Louez.io is an online platform designed for rental professionals who wish to manage their product catalogue, bookings, customers and online store. The service is available on a subscription basis."
+        "body": "BounceQuest is an online platform designed for rental professionals who wish to manage their product catalogue, bookings, customers and online store. The service is available on a subscription basis."
       },
       "s2": {
         "title": "User account",
@@ -9413,19 +9418,19 @@
       },
       "s4": {
         "title": "Pricing and payment",
-        "body": "Use of Louez.io is subject to a subscription whose pricing terms are specified at the time of sign-up. Payments are charged according to the billing frequency you choose. In the event of non-payment, access to the service may be suspended until the situation is resolved."
+        "body": "Use of BounceQuest is subject to a subscription whose pricing terms are specified at the time of sign-up. Payments are charged according to the billing frequency you choose. In the event of non-payment, access to the service may be suspended until the situation is resolved."
       },
       "s5": {
         "title": "Intellectual property",
-        "body": "All elements making up the platform (logo, brand, source code, design, text, illustrations) remain the exclusive property of Louez.io or its partners. Any unauthorised reproduction or use is strictly prohibited. The content you publish remains your property, but you grant Louez.io a non-exclusive licence to host and display it as part of the service."
+        "body": "All elements making up the platform (logo, brand, source code, design, text, illustrations) remain the exclusive property of BounceQuest or its partners. Any unauthorised reproduction or use is strictly prohibited. The content you publish remains your property, but you grant BounceQuest a non-exclusive licence to host and display it as part of the service."
       },
       "s6": {
         "title": "Availability and liability",
-        "body": "Louez.io makes every effort to ensure optimal availability of the platform but cannot guarantee that it will be entirely free of interruption. We cannot be held liable in cases of force majeure, third-party failure or misuse of the service. You remain solely responsible for your commercial relationships with your own customers."
+        "body": "BounceQuest makes every effort to ensure optimal availability of the platform but cannot guarantee that it will be entirely free of interruption. We cannot be held liable in cases of force majeure, third-party failure or misuse of the service. You remain solely responsible for your commercial relationships with your own customers."
       },
       "s7": {
         "title": "Termination",
-        "body": "You can cancel your subscription at any time from your account settings. In the event of a serious breach of these terms, Louez.io reserves the right to suspend or close your account without notice. Your data is retained and returned in accordance with our privacy policy."
+        "body": "You can cancel your subscription at any time from your account settings. In the event of a serious breach of these terms, BounceQuest reserves the right to suspend or close your account without notice. Your data is retained and returned in accordance with our privacy policy."
       },
       "s8": {
         "title": "Governing law",
@@ -9433,15 +9438,15 @@
       },
       "s9": {
         "title": "Referral program",
-        "body": "The referral program lets a rental business with an active store invite new rental businesses through a personal link. When a referred business collects its first online sale above a defined minimum amount, both the referrer and the referred business each receive a reward in the form of free reservations (Louez commission waived) or an equivalent credit on their Louez invoice. This reward is not redeemable for cash, is non-transferable and cannot be accumulated beyond the program's rules. Self-referral is excluded. Louez reserves the right to void or claw back a reward in the event of a refund, payment dispute, fraud or abuse, and to amend, suspend or end the program at any time, without affecting rewards already earned in good faith."
+        "body": "The referral program lets a rental business with an active store invite new rental businesses through a personal link. When a referred business collects its first online sale above a defined minimum amount, both the referrer and the referred business each receive a reward in the form of free reservations (BounceQuest commission waived) or an equivalent credit on their BounceQuest invoice. This reward is not redeemable for cash, is non-transferable and cannot be accumulated beyond the program's rules. Self-referral is excluded. BounceQuest reserves the right to void or claw back a reward in the event of a refund, payment dispute, fraud or abuse, and to amend, suspend or end the program at any time, without affecting rewards already earned in good faith."
       }
     },
     "privacy": {
       "title": "Privacy Policy",
-      "intro": "Louez.io places great importance on protecting your personal data. This policy describes the data we collect, the purposes for which it is processed and the rights available to you, in accordance with the General Data Protection Regulation (GDPR).",
+      "intro": "BounceQuest places great importance on protecting your personal data. This policy describes the data we collect, the purposes for which it is processed and the rights available to you, in accordance with the General Data Protection Regulation (GDPR).",
       "s1": {
         "title": "Data controller",
-        "body": "The controller of your data is Louez.io. For any questions regarding your personal data or to exercise your rights, you can write to us at contact@louez.io."
+        "body": "The controller of your data is BounceQuest. For any questions regarding your personal data or to exercise your rights, you can write to us at contact@louez.io."
       },
       "s2": {
         "title": "Data collected",
@@ -9457,7 +9462,7 @@
       },
       "s5": {
         "title": "Retention period",
-        "body": "Your active data is kept while your account exists. When you delete it, that data is removed from our active systems without delay, including invoices issued or received by your stores. Export them first if you need to keep them. Only Louez billing records that must be retained by law are isolated in a restricted archive for ten years after the financial year closes, then deleted. Backup copies follow their expiry cycle and are not restored to active systems."
+        "body": "Your active data is kept while your account exists. When you delete it, that data is removed from our active systems without delay, including invoices issued or received by your stores. Export them first if you need to keep them. Only BounceQuest billing records that must be retained by law are isolated in a restricted archive for ten years after the financial year closes, then deleted. Backup copies follow their expiry cycle and are not restored to active systems."
       },
       "s6": {
         "title": "Your rights",

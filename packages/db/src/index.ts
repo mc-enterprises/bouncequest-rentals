@@ -1,6 +1,8 @@
 import { hostname } from "node:os";
 
+import { eq as eqOrm } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/mysql2";
+import { registerStatusWebhookLoader } from "./event-status";
 import mysql from "mysql2/promise";
 import * as schema from "./schema";
 import { env } from "./env";
@@ -134,3 +136,22 @@ export { nextCategorySlug, nextProductSlug } from "./slugs";
 
 // Database setup utilities
 export { setupDatabase, CORE_TABLES } from "./setup";
+
+// BounceQuest: InflatableOffice event statuses and the outgoing status webhook.
+export * from "./event-status";
+registerStatusWebhookLoader(async (reservationId) => {
+  const [row] = await db
+    .select({
+      id: schema.reservations.id,
+      storeId: schema.reservations.storeId,
+      number: schema.reservations.number,
+      status: schema.reservations.status,
+      eventStatus: schema.reservations.eventStatus,
+      signedAt: schema.reservations.signedAt,
+    })
+    .from(schema.reservations)
+    .where(eqOrm(schema.reservations.id, reservationId))
+    .limit(1);
+  return row ?? null;
+});
+export * from "./price-templates";

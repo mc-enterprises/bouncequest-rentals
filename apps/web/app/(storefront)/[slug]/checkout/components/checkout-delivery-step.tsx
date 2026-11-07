@@ -12,7 +12,7 @@ import { withForm } from "@/hooks/form/form";
 import { useFormatMoney } from "@/hooks/use-format-money";
 import { useMyLocation } from "@/hooks/use-my-location";
 import type { AddressInputSource } from "@/components/ui/address-input";
-import { isFreeDelivery } from "@/lib/utils/geo";
+import { isFreeDelivery, toDeliveryDistanceUnits } from "@/lib/utils/geo";
 
 import type { useCheckoutDelivery } from "../hooks/use-checkout-delivery";
 import { buildLegMapView } from "../util.checkout-fulfillment-map";
@@ -191,7 +191,8 @@ export const CheckoutDeliveryStep = withForm({
           ? t("free")
           : formatMoney(fee);
 
-      return `${t("distanceKm", { distance: distance.toFixed(1) })} · ${price}`;
+      const shown = toDeliveryDistanceUnits(distance, deliverySettings);
+      return `${t("distanceKm", { distance: shown.toFixed(1) })} · ${price}`;
     };
 
     const renderMapPanel = (leg: Leg) => {

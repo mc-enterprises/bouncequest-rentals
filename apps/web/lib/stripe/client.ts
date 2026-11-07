@@ -1,6 +1,44 @@
 import Stripe from 'stripe'
 import { env } from '@/env'
 
+import { DIRECT_STRIPE_ACCOUNT_ID } from './direct'
+
+/**
+ * BounceQuest direct mode: the HTTP client drops the Stripe-Account header for the
+ * direct sentinel account, so Connect-shaped calls run on the key's own account.
+ */
+const createDirectAccountHttpClient = (): Stripe.HttpClient => {
+  const inner = Stripe.createNodeHttpClient()
+  const makeRequest: Stripe.HttpClient["makeRequest"] = (
+    host,
+    port,
+    path,
+    method,
+    headers,
+    requestData,
+    protocol,
+    timeout,
+  ) => {
+    const filtered: Record<string, unknown> = { ...(headers as Record<string, unknown>) }
+    for (const name of Object.keys(filtered)) {
+      if (name.toLowerCase() === "stripe-account" && filtered[name] === DIRECT_STRIPE_ACCOUNT_ID) {
+        delete filtered[name]
+      }
+    }
+    return inner.makeRequest(
+      host,
+      port,
+      path,
+      method,
+      filtered as typeof headers,
+      requestData,
+      protocol,
+      timeout,
+    )
+  }
+  return { getClientName: () => inner.getClientName(), makeRequest } as Stripe.HttpClient
+}
+
 /**
  * Whether stores can take online payments through Stripe Connect: the secret key and the
  * Connect webhook secret, which confirms their payments. Platform billing (plan prices,
@@ -32,6 +70,7 @@ export const getStripe = (): Stripe => {
     stripeInstance = new Stripe(env.STRIPE_SECRET_KEY, {
       apiVersion: '2025-12-15.clover',
       typescript: true,
+      httpClient: createDirectAccountHttpClient(),
     })
   }
   return stripeInstance

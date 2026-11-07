@@ -281,6 +281,7 @@ export const useRentalDateCore = (options: RentalDateCoreOptions): RentalDateCor
     maxRentalMinutes,
     businessHours,
     advanceNoticeMinutes = 0,
+    maxAdvanceDays = null,
     minDate: minDateFloor,
     timezone,
     intervalMinutes = DEFAULT_INTERVAL_MINUTES,
@@ -351,9 +352,15 @@ export const useRentalDateCore = (options: RentalDateCoreOptions): RentalDateCor
     [endDate, startDate, startTime, ctx, intervalMinutes],
   );
 
+  const maxDate = useMemo(
+    () => (maxAdvanceDays && maxAdvanceDays > 0 ? addDays(startOfDay(new Date()), maxAdvanceDays) : null),
+    [maxAdvanceDays],
+  );
+
   const isDateDisabled = useCallback(
     (date: Date): boolean => {
       if (date < minDate) return true;
+      if (maxDate && draft.activeField !== "end" && date > maxDate) return true;
       if (draft.activeField === "end" && startDate) {
         if (date < startOfDay(startDate)) return true;
         if (
@@ -366,7 +373,16 @@ export const useRentalDateCore = (options: RentalDateCoreOptions): RentalDateCor
       if (!businessHours?.enabled) return false;
       return !isDateAvailable(date, businessHours, timezone).available;
     },
-    [minDate, businessHours, timezone, draft.activeField, startDate, pricingMode, minRentalMinutes],
+    [
+      minDate,
+      maxDate,
+      businessHours,
+      timezone,
+      draft.activeField,
+      startDate,
+      pricingMode,
+      minRentalMinutes,
+    ],
   );
 
   const period = useMemo<RentalPeriodValue | null>(

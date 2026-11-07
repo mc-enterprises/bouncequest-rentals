@@ -216,6 +216,8 @@ interface Reservation {
   /** "checkout" means the storefront booking itself, whose rental terms the customer accepted. */
   signatureMethod?: ContractSignatureMethod | null;
   signatureIp?: string | null;
+  /** BounceQuest: the full name the customer typed as their electronic signature. */
+  signatureName?: string | null;
   /** Drawn by the customer on the renter's device, when signed in store. */
   drawnSignature?: { signerName: string; image: string } | null;
   createdAt: Date;
@@ -708,6 +710,12 @@ export function ContractDocument({
                 </Text>
                 {customerSignature === "atBooking" ? (
                   <>
+                    {reservation.signatureName ? (
+                      <View style={styles.signatureDateRow}>
+                        <Text style={styles.signatureDateLabel}>Signed electronically by</Text>
+                        <Text style={styles.signatureDate}>/s/ {reservation.signatureName}</Text>
+                      </View>
+                    ) : null}
                     <View style={styles.signatureDateRow}>
                       <Text style={styles.signatureDateLabel}>{t.signature.signedOnLabel}</Text>
                       <Text style={styles.signatureDate}>

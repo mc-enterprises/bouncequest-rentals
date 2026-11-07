@@ -6790,6 +6790,10 @@
             "applied": "设置已应用"
           }
         }
+      },
+      "priceTemplates": {
+        "title": "Shared prices",
+        "description": "Flat and tiered-by-hours prices shared by many items"
       }
     },
     "commandPalette": {
@@ -9241,6 +9245,7 @@
     "returnAddressRequired": "请输入有效的退货地址",
     "returnAddressTooFar": "回邮地址太远（{maxKm} 公里最大）",
     "advanceNoticeViolation": "需至少提前 {duration} 预订",
+    "maxAdvanceViolation": "Bookings open up to {days} days ahead. Please pick an earlier date.",
     "noReservationsWithEmail": "未找到通过此电子邮件进行的预订",
     "noReservationForEmail": "未找到通过此电子邮件进行的预订",
     "sendCodeError": "发送代码时出错",

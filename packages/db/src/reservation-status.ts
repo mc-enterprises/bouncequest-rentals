@@ -8,6 +8,7 @@ import {
   restoreReservationStock,
 } from "./consumable-stock";
 import { markReservation } from "./billing-queue";
+import { deriveEventStatus, eventStatusAfterLouezChange, queueStatusWebhook } from "./event-status";
 import type { Transaction } from "./index";
 import { assertStoreCanTakeReservations } from "./reservation-gate";
 import { reservationActivity, reservations } from "./schema";
@@ -141,6 +142,8 @@ export type ReservationStatusChangePlan =
 
 // No transition enters pending or quote, so they have no default.
 const DEFAULT_ACTIVITY_TYPE: Partial<Record<ReservationStatus, ReservationActivityType>> = {
+  // BounceQuest: a Quote put on Hold.
+  pending: "modified",
   confirmed: "confirmed",
   ongoing: "picked_up",
   completed: "returned",
@@ -278,6 +281,8 @@ export async function changeReservationStatus(
       status: reservations.status,
       source: reservations.source,
       billableAt: reservations.billableAt,
+      eventStatus: reservations.eventStatus,
+      signedAt: reservations.signedAt,
     })
     .from(reservations)
     .where(scope)
@@ -305,6 +310,7 @@ export async function changeReservationStatus(
     .update(reservations)
     .set({
       status: plan.update.status,
+      eventStatus: eventStatusAfterLouezChange(plan.update.status, locked.signedAt),
       updatedAt: plan.update.updatedAt,
       billableAt: plan.update.billableAt,
       withdrawnAt: plan.update.withdrawnAt,
@@ -319,6 +325,14 @@ export async function changeReservationStatus(
     ...plan.activity,
   });
   await markReservation(tx, { id: input.reservationId, storeId: input.storeId });
+
+  queueStatusWebhook({
+    reservationId: input.reservationId,
+    previousStatus: locked.status,
+    previousEventStatus: deriveEventStatus(locked),
+    expectedStatus: input.to,
+    actor: input.actor,
+  });
 
   return { changed: true, ...change, effects: plan.effects };
 }

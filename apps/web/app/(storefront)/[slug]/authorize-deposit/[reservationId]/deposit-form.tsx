@@ -12,6 +12,7 @@ import { Price } from "@/components/storefront/ui/price";
 
 import { createDepositPaymentIntent, type DepositAuthorizationError } from "./actions";
 import { DepositPaymentFields } from "./deposit-payment-fields";
+import { stripeJsAccountOptions } from "@/lib/stripe/direct";
 
 interface DepositFormProps {
   slug: string;
@@ -47,7 +48,7 @@ const getStripePromise = (publishableKey: string, stripeAccountId: string) => {
   if (existing) {
     return existing;
   }
-  const created = loadStripe(publishableKey, { stripeAccount: stripeAccountId });
+  const created = loadStripe(publishableKey, stripeJsAccountOptions(stripeAccountId));
   stripePromises.set(key, created);
   return created;
 };

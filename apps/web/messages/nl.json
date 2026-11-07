@@ -6790,6 +6790,10 @@
             "applied": "Instellingen toegepast"
           }
         }
+      },
+      "priceTemplates": {
+        "title": "Shared prices",
+        "description": "Flat and tiered-by-hours prices shared by many items"
       }
     },
     "commandPalette": {
@@ -9241,6 +9245,7 @@
     "returnAddressRequired": "Voer een geldig retouradres in",
     "returnAddressTooFar": "Retouradres is te ver weg ({maxKm} km maximum)",
     "advanceNoticeViolation": "Reserveringen moeten minimaal {duration} van tevoren worden gemaakt",
+    "maxAdvanceViolation": "Bookings open up to {days} days ahead. Please pick an earlier date.",
     "noReservationsWithEmail": "Geen reserveringen gevonden met dit e-mailadres",
     "noReservationForEmail": "Geen reserveringen gevonden met dit e-mailadres",
     "sendCodeError": "Fout bij verzenden code",
