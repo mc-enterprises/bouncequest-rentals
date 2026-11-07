@@ -39,6 +39,7 @@ const reservationRulesSchema = z.object({
   turnoverBufferMinutes: z.number().int().min(0).max(10080),
   requireCustomerAddress: z.boolean(),
   contractSignatureMode: z.enum(CONTRACT_SIGNATURE_MODES),
+  maxAdvanceDays: z.number().int().min(1).max(1095).nullable(),
 });
 
 interface ReservationRulesFormProps {
@@ -74,6 +75,7 @@ export const ReservationRulesForm = ({
       turnoverBufferMinutes: settings?.turnoverBufferMinutes ?? 0,
       requireCustomerAddress: settings?.requireCustomerAddress ?? false,
       contractSignatureMode: settings?.contractSignatureMode ?? DEFAULT_CONTRACT_SIGNATURE_MODE,
+      maxAdvanceDays: settings?.maxAdvanceDays ?? null,
     },
     validators: { onSubmit: reservationRulesSchema },
     validationLogic: revalidateLogic({ mode: "submit", modeAfterSubmission: "change" }),
@@ -108,6 +110,26 @@ export const ReservationRulesForm = ({
             onStripeRequired={() => setIsStripeRequiredDialogOpen(true)}
             units={units}
           />
+
+          <section className="space-y-4 rounded-xl border bg-card p-6">
+            <form.AppField name="maxAdvanceDays">
+              {(field) => (
+                <field.Input
+                  type="number"
+                  min={1}
+                  max={1095}
+                  value={field.state.value ?? ""}
+                  onChange={(event) =>
+                    field.handleChange(
+                      event.target.value === "" ? null : Number(event.target.value),
+                    )
+                  }
+                  label="Maximum advance booking (days)"
+                  description="How far ahead customers can book online. Leave empty for no limit."
+                />
+              )}
+            </form.AppField>
+          </section>
 
           <section className="space-y-4 rounded-xl border bg-card p-6">
             <form.AppField name="automaticExtensions">
