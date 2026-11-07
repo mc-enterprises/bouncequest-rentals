@@ -20,6 +20,8 @@ export interface RentalDateCoreOptions {
   maxRentalMinutes?: number | null;
   businessHours?: BusinessHours;
   advanceNoticeMinutes?: number;
+  /** BounceQuest: days ahead after which the calendar is closed. */
+  maxAdvanceDays?: number | null;
   /** Extra floor for the calendar, for callers that only know a minimum date. */
   minDate?: Date;
   timezone?: string;

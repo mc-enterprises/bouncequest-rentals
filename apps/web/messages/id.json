@@ -9245,6 +9245,7 @@
     "returnAddressRequired": "Silakan masukkan alamat pengirim yang valid",
     "returnAddressTooFar": "Alamat pengembalian terlalu jauh (maksimum {maxKm} km)",
     "advanceNoticeViolation": "Reservasi harus dilakukan minimal {duration} terlebih dahulu",
+    "maxAdvanceViolation": "Bookings open up to {days} days ahead. Please pick an earlier date.",
     "noReservationsWithEmail": "Tidak ada reservasi yang ditemukan dengan email ini",
     "noReservationForEmail": "Tidak ada reservasi yang ditemukan dengan email ini",
     "sendCodeError": "Kesalahan saat mengirim kode",

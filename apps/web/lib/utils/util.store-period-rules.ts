@@ -17,4 +17,5 @@ export const getStorePeriodRules = (
   advanceNoticeMinutes: settings?.advanceNoticeMinutes ?? 0,
   minRentalMinutes: getMinRentalMinutes(settings),
   maxRentalMinutes: settings?.maxRentalMinutes ?? null,
+  ...(settings?.maxAdvanceDays ? { maxAdvanceDays: settings.maxAdvanceDays } : {}),
 });

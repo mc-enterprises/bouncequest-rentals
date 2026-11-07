@@ -50,11 +50,26 @@ export function calculateHaversineDistance(
  * @param settings - Delivery settings from store
  * @returns Fee for this leg in store currency
  */
+export const KM_PER_MILE = 1.609344
+
+/** The delivery distance unit; BounceQuest defaults to miles. */
+export function getDeliveryDistanceUnit(settings: Pick<DeliverySettings, 'distanceUnit'>): 'km' | 'mi' {
+  return settings.distanceUnit === 'km' ? 'km' : 'mi'
+}
+
+/** A distance in kilometers expressed in the store's delivery unit. */
+export function toDeliveryDistanceUnits(
+  distanceKm: number,
+  settings: Pick<DeliverySettings, 'distanceUnit'>
+): number {
+  return getDeliveryDistanceUnit(settings) === 'mi' ? distanceKm / KM_PER_MILE : distanceKm
+}
+
 export function calculateLegFee(
   distanceKm: number,
   settings: DeliverySettings
 ): number {
-  const fee = distanceKm * settings.pricePerKm
+  const fee = toDeliveryDistanceUnits(distanceKm, settings) * settings.pricePerKm
   return Math.round(Math.max(fee, settings.minimumFee) * 100) / 100
 }
 
@@ -115,7 +130,7 @@ export function validateDelivery(
 
   if (
     settings.maximumDistance !== null &&
-    distanceKm > settings.maximumDistance
+    toDeliveryDistanceUnits(distanceKm, settings) > settings.maximumDistance
   ) {
     return {
       valid: false,

@@ -31,6 +31,7 @@ export const useEmbedPeriod = (rules: RentalPeriodRules) => {
     maxRentalMinutes: rules.maxRentalMinutes,
     businessHours: rules.businessHours,
     advanceNoticeMinutes: rules.advanceNoticeMinutes,
+    maxAdvanceDays: rules.maxAdvanceDays,
     timezone: rules.timezone,
   });
 

@@ -9245,6 +9245,7 @@
     "returnAddressRequired": "Пожалуйста, введите действительный обратный адрес",
     "returnAddressTooFar": "Обратный адрес находится слишком далеко (максимум {maxKm} км)",
     "advanceNoticeViolation": "Бронирование должно быть сделано как минимум за {duration} заранее.",
+    "maxAdvanceViolation": "Bookings open up to {days} days ahead. Please pick an earlier date.",
     "noReservationsWithEmail": "По этому адресу электронной почты не найдено ни одного бронирования.",
     "noReservationForEmail": "По этому адресу электронной почты не найдено ни одного бронирования.",
     "sendCodeError": "Ошибка отправки кода",

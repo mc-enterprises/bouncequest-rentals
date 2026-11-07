@@ -9245,6 +9245,7 @@
     "returnAddressRequired": "Bitte geben Sie eine gültige Rückgabeadresse ein",
     "returnAddressTooFar": "Rückgabeadresse ist zu weit entfernt ({maxKm} km Maximum)",
     "advanceNoticeViolation": "Reservierungen müssen mindestens {duration} im Voraus erfolgen",
+    "maxAdvanceViolation": "Bookings open up to {days} days ahead. Please pick an earlier date.",
     "noReservationsWithEmail": "Keine Reservierungen mit dieser E-Mail gefunden",
     "noReservationForEmail": "Keine Reservierungen mit dieser E-Mail gefunden",
     "sendCodeError": "Fehler beim Senden des Codes",

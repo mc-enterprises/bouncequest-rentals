@@ -74,7 +74,7 @@ export const CheckoutLocationList = ({
 
             {location.distanceKm !== null ? (
               <span className="shrink-0 text-xs text-muted-foreground tabular-nums">
-                {t("distanceKm", { distance: location.distanceKm.toFixed(1) })}
+                {t("distanceKm", { distance: (location.distanceKm / 1.609344).toFixed(1) })}
               </span>
             ) : null}
 

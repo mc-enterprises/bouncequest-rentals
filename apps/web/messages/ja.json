@@ -9245,6 +9245,7 @@
     "returnAddressRequired": "有効な返送先住所を入力してください",
     "returnAddressTooFar": "返送先住所が遠すぎます (最大 {maxKm} km)",
     "advanceNoticeViolation": "少なくとも{duration}までに予約する必要があります",
+    "maxAdvanceViolation": "Bookings open up to {days} days ahead. Please pick an earlier date.",
     "noReservationsWithEmail": "このメールでは予約が見つかりませんでした",
     "noReservationForEmail": "このメールでは予約が見つかりませんでした",
     "sendCodeError": "コード送信エラー",
