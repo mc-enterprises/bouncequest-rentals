@@ -46,3 +46,27 @@ jobs:
             NEXT_PUBLIC_APP_VERSION=${{ github.sha }}
           cache-from: type=gha,scope=bq-web
           cache-to: type=gha,mode=max,scope=bq-web
+
+      # The GHCR package is private; the VPS loads this artifact instead (deploy/bouncequest/README.md).
+      - name: Export image for the VPS
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: docker/Dockerfile.web
+          target: app
+          platforms: linux/amd64
+          outputs: type=docker,dest=/tmp/bouncequest-image.tar
+          tags: ghcr.io/mc-enterprises/bouncequest-rentals:latest
+          build-args: |
+            NEXT_PUBLIC_APP_VERSION=${{ github.sha }}
+          cache-from: type=gha,scope=bq-web
+
+      - name: Compress image
+        run: gzip -1 /tmp/bouncequest-image.tar
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: bouncequest-image
+          path: /tmp/bouncequest-image.tar.gz
+          retention-days: 3
+          compression-level: 0
