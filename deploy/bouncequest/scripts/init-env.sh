@@ -19,7 +19,6 @@ set_default() {
 set_default BQ_DOMAIN "${BQ_DOMAIN:-rentals.316fatboyz.com}"
 set_default BQ_PUBLIC_IP "${BQ_PUBLIC_IP:-5.161.122.138}"
 set_default BQ_IMAGE "ghcr.io/mc-enterprises/bouncequest-rentals:latest"
-set_default ACME_EMAIL "${ACME_EMAIL:-}"
 set_default AUTH_SECRET "$(openssl rand -base64 32 | tr -d '\n')"
 set_default DB_PASSWORD "$(rand)"
 set_default DB_ROOT_PASSWORD "$(rand)"

@@ -1,0 +1,65 @@
+[
+  {
+    "id": "BQStatusHook0001",
+    "name": "BounceQuest Rentals — event status webhook",
+    "active": false,
+    "nodes": [
+      {
+        "parameters": {
+          "httpMethod": "POST",
+          "path": "bouncequest-status",
+          "responseMode": "onReceived",
+          "options": {}
+        },
+        "id": "4c3a3b4e-5d0a-4c55-9a1f-0b9b1d6b0001",
+        "name": "BounceQuest status change",
+        "type": "n8n-nodes-base.webhook",
+        "typeVersion": 2,
+        "position": [0, 0],
+        "webhookId": "6f0c1a52-9a2d-4c1e-8f3b-2b7d4b000001"
+      },
+      {
+        "parameters": {
+          "assignments": {
+            "assignments": [
+              { "id": "a1", "name": "event", "value": "={{ $json.body.event }}", "type": "string" },
+              { "id": "a2", "name": "reservationId", "value": "={{ $json.body.reservationId }}", "type": "string" },
+              { "id": "a3", "name": "number", "value": "={{ $json.body.number }}", "type": "string" },
+              { "id": "a4", "name": "previousEventStatus", "value": "={{ $json.body.previousEventStatus }}", "type": "string" },
+              { "id": "a5", "name": "eventStatus", "value": "={{ $json.body.eventStatus }}", "type": "string" },
+              { "id": "a6", "name": "louezStatus", "value": "={{ $json.body.status }}", "type": "string" },
+              { "id": "a7", "name": "actor", "value": "={{ $json.body.actor }}", "type": "string" },
+              { "id": "a8", "name": "occurredAt", "value": "={{ $json.body.occurredAt }}", "type": "string" },
+              { "id": "a9", "name": "signature", "value": "={{ $json.headers['x-bouncequest-signature'] }}", "type": "string" }
+            ]
+          },
+          "options": {}
+        },
+        "id": "4c3a3b4e-5d0a-4c55-9a1f-0b9b1d6b0002",
+        "name": "Normalize status change",
+        "type": "n8n-nodes-base.set",
+        "typeVersion": 3.4,
+        "position": [260, 0]
+      },
+      {
+        "parameters": {},
+        "id": "4c3a3b4e-5d0a-4c55-9a1f-0b9b1d6b0003",
+        "name": "Phase 2 hook (notify, Notion, SMS)",
+        "type": "n8n-nodes-base.noOp",
+        "typeVersion": 1,
+        "position": [520, 0]
+      }
+    ],
+    "connections": {
+      "BounceQuest status change": {
+        "main": [[{ "node": "Normalize status change", "type": "main", "index": 0 }]]
+      },
+      "Normalize status change": {
+        "main": [[{ "node": "Phase 2 hook (notify, Notion, SMS)", "type": "main", "index": 0 }]]
+      }
+    },
+    "settings": { "executionOrder": "v1", "saveDataSuccessExecution": "all" },
+    "pinData": {},
+    "tags": []
+  }
+]

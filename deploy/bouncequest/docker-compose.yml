@@ -100,7 +100,6 @@ services:
     image: caddy:2.10
     environment:
       BQ_DOMAIN: ${BQ_DOMAIN}
-      ACME_EMAIL: ${ACME_EMAIL:-}
     ports:
       - "${BQ_PUBLIC_IP}:80:80"
       - "${BQ_PUBLIC_IP}:443:443"
