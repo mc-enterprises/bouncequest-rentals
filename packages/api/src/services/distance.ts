@@ -1,4 +1,5 @@
 import { ApiServiceError } from './errors'
+import { ROAD_DISTANCE_FACTOR } from './address-osm'
 
 interface GetRouteDistanceParams {
   originLatitude: number
@@ -107,8 +108,11 @@ export async function getRouteDistance(
   try {
     apiKey = getGoogleApiKey(googlePlacesApiKey)
   } catch {
-    logRouteDistanceFallback('missing_google_api_key', params)
-    return { distanceKm: fallbackDistanceKm, source: 'haversine' }
+    // BounceQuest: no routing API, so estimate road distance from the straight line.
+    return {
+      distanceKm: roundDistance(fallbackDistanceKm * ROAD_DISTANCE_FACTOR),
+      source: 'haversine',
+    }
   }
 
   try {

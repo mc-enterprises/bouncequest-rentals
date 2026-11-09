@@ -1,5 +1,8 @@
 import type { AddressDetails, AddressSuggestion } from '@louez/types'
 import { ApiServiceError } from './errors'
+import { osmAutocomplete, osmDetailsFromPlaceId, osmResolveQuery } from './address-osm'
+
+const hasGoogleKey = (apiKey?: string) => Boolean(apiKey ?? process.env.GOOGLE_PLACES_API_KEY)
 
 interface GetAddressAutocompleteParams {
   query: string
@@ -34,6 +37,8 @@ export async function getAddressAutocomplete(
   params: GetAddressAutocompleteParams,
 ): Promise<{ suggestions: AddressSuggestion[] }> {
   const { query, googlePlacesApiKey } = params
+  // BounceQuest: OpenStreetMap (Photon) when no Google Places key is configured.
+  if (!hasGoogleKey(googlePlacesApiKey)) return osmAutocomplete(query)
   const apiKey = getGoogleApiKey(googlePlacesApiKey)
 
   const response = await fetch('https://places.googleapis.com/v1/places:autocomplete', {
@@ -86,6 +91,7 @@ export async function resolveAddressQuery(
   params: ResolveAddressQueryParams,
 ): Promise<{ details: AddressDetails | null }> {
   const { query, googlePlacesApiKey } = params
+  if (!hasGoogleKey(googlePlacesApiKey)) return osmResolveQuery(query)
   const apiKey = getGoogleApiKey(googlePlacesApiKey)
 
   const response = await fetch('https://places.googleapis.com/v1/places:searchText', {
@@ -148,6 +154,8 @@ export async function getAddressDetails(
   params: GetAddressDetailsParams,
 ): Promise<{ details: AddressDetails }> {
   const { placeId, googlePlacesApiKey } = params
+  const osmDetails = osmDetailsFromPlaceId(placeId)
+  if (osmDetails) return { details: osmDetails }
   const apiKey = getGoogleApiKey(googlePlacesApiKey)
 
   const response = await fetch(`https://places.googleapis.com/v1/places/${placeId}`, {
